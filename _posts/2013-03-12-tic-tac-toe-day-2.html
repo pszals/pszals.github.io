@@ -1,0 +1,24 @@
+---
+layout: post
+title: 'Tic Tac Toe: Day 2'
+categories: []
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _publicize_pending: '1'
+author: 
+---
+<p>After puzzling over all of the different components that are going to have to go into this program, I have decided to start with making a Tic Tac Toe game for two human players. The AI can be added later as a separate function (or class, if using classes instead of functions becomes advantageous).</p>
+<p>So far there are three main functions, print_board(), place_x(), and place_o(). print_board() does just that, it prints the current board, with underscores (_) for empty spaces. place_x() and place_o() each will ask the user for a row number then a column number. If the given space is not taken, an x or an o is placed there, then the board is printed again.</p>
+<p>Both functions can be called separately, and a not-so-elegant way of playing the game would be to alternate calling each function, starting with place_x(), such that place_x() gets called 5 times and place_o() gets called 4 times. But this way of doing things has some problems. If the board is only filled partially, but a player has connected three, the game keeps going. In the same manner, the program never announces the result of the game (i.e. winner, loser, tie). There is also a bug in my program that causes the board to be printed multiple times if a user tries to make an invalid move by placing a marker in a non-empty space.</p>
+<p>Code: <a href="https://gist.github.com/pszals/5149062">https://gist.github.com/pszals/5149062</a></p>
+<p>To-do list:</p>
+<p>1. Fix bug that prints board multiple times</p>
+<p>2. Make a runner that will :</p>
+<ul>
+<li>Evaluate if there are any valid moves available</li>
+<li>Alternate calling place_x() and place_o(), but only if valid moves are available and if there is not yet a winner.</li>
+</ul>
+<p>Here is some pseudo-code that I have for my game runner: <a href="https://gist.github.com/pszals/5149061">https://gist.github.com/pszals/5149061</a></p>

@@ -1,0 +1,24 @@
+---
+layout: post
+title: Building a Stack
+categories: []
+tags:
+- recursion
+- stack
+- TDD
+status: publish
+type: post
+published: true
+meta:
+  _publicize_pending: '1'
+author: 
+---
+<p dir="ltr">After talking with <a href="www.8thlight.com/our-team/jim-suchy">one of the craftsmen</a> about the dangers of using recursion (you can blow the stack -- hence, “stack overflow”) and how that can be avoided by using a while-loop instead, I took a cup of fresh coffee back to my <a href="http://en.wikipedia.org/wiki/Standing_desk">standing workbench</a> to digest what I had just learned. Flowing through my mind were thoughts about bits and bytes and the programming language C and why Java would be a better first language than Ruby because it forces you to consider things that Ruby automatically does under the hood. I put my forehead to the desk in a moment of mind blown-ness and when I picked it back up Jim was sitting next to me. “I want you to build a stack.” What was I to do but acquiesce? We got started with a bit of <a href="http://c2.com/cgi/wiki?PairProgrammingPingPongPattern">ping pong TDD</a>.</p>
+<p dir="ltr">The UML looks like this:</p>
+<p dir="ltr"><span style="text-decoration:underline;">Stack Class<br />
+</span>+ pop: int<br />
++ peek: int<br />
++ push(:int)</p>
+<p>In about 30 minutes yesterday, this is what we came up with:</p>
+<p dir="ltr">https://gist.github.com/pszals/5918354</p>
+<p>How would you finish it out? I’ll update the rest once I complete it.</p>

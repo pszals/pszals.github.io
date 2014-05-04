@@ -1,0 +1,16 @@
+---
+layout: post
+title: Why is there so much logic in the route file?
+categories: []
+tags:
+- sinatra
+status: publish
+type: post
+published: true
+meta:
+  _publicize_pending: '1'
+  geo_public: '0'
+author: 
+---
+<p dir="ltr">After my IPM on Friday I realized that although the road on which I had been traveling last week would have eventually led me to the end goal of having a playable game in the browser, it would have also led me to replicate most of the tic tac toe game I had already built and packaged as a gem. In addition to the extra time this caused me to spend building the game out “incorrectly,” it led me to put most of this logic in my route file, where it does not belong (violating all sorts of <a href="http://en.wikipedia.org/wiki/SOLID_(object-oriented_design)">SOLID principles</a>) and causing lots of clutter, thus making forward progress conceptually convoluted.</p>
+<p dir="ltr">The work I did today consisted largely of mapping out (and eventually building parts of) the instantiation process of the various classes within my tic tac toe gem. Rather than keep track of player moves and the board status via cookies, I will let the game handle all of that logic now. Using the input from the configurations page that gets sent to the params hash in the browser I am now able to configure the game according to the three variables offered: opponent type (human or computer), marker type (X or O), and board size (3x3 or 4x4). This has led to a much cleaner approach in the code and a far clearer picture in my head of how best to get where I need to go. After this it should (famous last words) be relatively simple to use the game logic (that I already know works just fine) to command the display of the board and marker placement in the browser.</p>

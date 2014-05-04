@@ -1,0 +1,23 @@
+---
+layout: post
+title: 'Practicing Mindfulness: Learning Erlang'
+categories: []
+tags:
+- erlang
+- learning
+- recursion
+status: publish
+type: post
+published: true
+meta:
+  _publicize_pending: '1'
+author: 
+---
+<p dir="ltr">Throughout the last four days I have spent my waking hours learning about the programming language Erlang. Building massively scalable soft real-time systems is what the language is most often used for. Examples of such uses can be found in the database services implementing SimpleDB in the Amazon Elastic Cloud; the chat functionality in Facebook; T-Mobile’s SMS service; or Yahoo!’s Delicious bookmarking service. Erlang sure gets around.</p>
+<p dir="ltr">As I’ve progressed in my assimilation of Erlang I’ve encountered both new and old challenges -- pattern matching and tail recursion are two of the newest, and I’m both surprised and unsurprised that my battle with perfectionism keeps cropping up. Susan Rosso, of 8th Light, recently compiled a <a href="http://blog.8thlight.com/susan-rosso/2013/08/26/mindfulness-and-stress-relief.html">blog post</a> about mindfulness and stress relief. In it she defines mindfulness as “an attentive awareness of the reality of things in the present moment.” When I am learning a new language, that reality is one in which I often get a lot of things wrong, struggle with comprehension, and in general feel entirely out of my comfort zone. Learning Erlang is no exception.</p>
+<p dir="ltr">Despite my troubles and perfectionist nature, I have persevered in my learning. One such example of my learning includes the use of pattern matching. In Ruby, if I wanted to find all the even numbers in a list of numbers 1-10, I would do something like:</p>
+<p dir="ltr">numbers = [1,2,3,4,5,6,7,8,9,10]<br />evens = []<br />numbers.each {|number| evens &lt;&lt; number if number % 2 == 0}</p>
+<p dir="ltr">This can’t happen in Erlang for a variety of reasons, not the least of which being that variables are immutable, meaning that the variable ‘evens’ always and forever will be equal to an empty list. Instead, we use pattern matching. For example:</p>
+<p dir="ltr">1   even(L) -&gt; lists:reverse(even(L,[])).<br />2<br />3   even([], Acc) -&gt; Acc;<br />4   even([H|T], Acc) when H rem 2 == 0 -&gt;<br />5      even(T, [H|Acc]);<br />6   even([_|T], Acc) -&gt;<br />7      even(T, Acc).</p>
+<p dir="ltr">From the top, we have a function, even/1, that takes one argument (a list) and uses the reverse function from the lists module to reverse the result of the function call even/2 (a second and separate function, distinct from the first even() because of its <a href="http://en.wikipedia.org/wiki/Arity">arity</a> of two). even/2 takes two arguments, both of them lists. On the first call of even/2 the original list from even/1 is passed in, and an empty list is filled in as a default argument.</p>
+<p>When even/2 is called on line 3, if the first argument is an empty list, then the accumulator (Acc) is returned. But because the list that is passed in is not empty and does not match the first argument of an empty list, the calculation proceeds onto line 4. The H and the T stand for Head and Tail. The Head is the first element in a list, and the Tail is the rest of the elements. This essentially breaks our original list of numbers 1-10 into two separate lists, [1], and [2 ...10]. When the Head is divisible by two (the remainder is equal to zero after division by 2) the function even/2 is called again, but this time the Tail is placed in the position of our original list, and the Head is added onto our Accumulator. If the Head is NOT divisible by two, then the process continues onto line 6. The underscore where one would expect an H to be is something of a wildcard. In the case of a one-item list, the Head is that one item (that didn’t meet the previous criterion of being divisible by two) and is ignored, and the tail (an empty list) is fed back in. This matches the empty list found in the function call on line 3, and the resulting accumulator (a list of only even numbers) is returned. Talk about more than one way to skin a cat.</p>

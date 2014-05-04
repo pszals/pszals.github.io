@@ -1,0 +1,17 @@
+---
+layout: post
+title: Experiments with Embedded Ruby
+categories: []
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _publicize_pending: '1'
+  geo_public: '0'
+author: 
+---
+<p dir="ltr">After getting the WebGame class fleshed out a bit more I was ready to try it out in the browser. The game was configured properly and an empty board was displayed. After clicking a button to make a move via the @web_game.make_move method, Sinatra told me that there was an uninitialized constant error -- it looks like even though there was an attr_reader for @web_game, it could not be accessed outside the route in which it was initialized.</p>
+<p dir="ltr">I extracted the instantiation into a helper method and changed all the single @'s to @@'s (because the single @'s didn't work after extraction either) and it appears to have done what was expected: placed a piece on the board (as can be seen from the server log). BUT it did not render the erb :game file afterwards, it simply stayed on the /make_move url.</p>
+<p dir="ltr">Although I know that using class/global variables tends to be frowned upon, it is up for debate whether making one is the best way to allow the instance of the WebGame to be accessed throughout the route file. It is certainly the simplest; if I didn’t have a class variable I would have to instantiate the WebGame class every time I needed it in a new route. This would mean I would need to keep track of the state of the game (configurations, board state, turn-taking, etc.) outside of the gem using something like cookies, which would lead to the complicatedly naive implementation that was on my hands last week.</p>
+<p dir="ltr">I’ve now been able to use that instance of the WebGame in my erb file that interpolates the squares on the board into some HTML that the browser can render, leading to a much <a href="https://github.com/pszals/sinatra_ttt/blob/master/lib/views/game.erb">cleaner looking HTML file</a>.</p>

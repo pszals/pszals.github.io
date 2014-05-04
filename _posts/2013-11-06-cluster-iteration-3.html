@@ -1,0 +1,21 @@
+---
+layout: post
+title: 'Cluster: Iteration 3'
+categories: []
+tags:
+- apprenticeship
+- client management
+- partnership project
+status: publish
+type: post
+published: true
+meta:
+  _publicize_pending: '1'
+author: 
+---
+<p dir="ltr">Part way through this iteration I finish with all of the acceptance criteria except for the persistence story. It is at this point that I decide to check in with my client to see what kind of database he is interested in having, and how he would like the app to be deployed. Because the acceptance criteria are relatively vague, I could go in any number of directions in order to satisfy the requirement that “data persists across restart of server,” but I know that whatever I choose, it is likely that my client will want something different. With half of the week left to go, a mid-iteration meeting provides an opportunity to gain this clarity as well as receive feedback on the progress already made.</p>
+<p dir="ltr">From this meeting I learn that the goal is to deploy this app to <a href="https://www.heroku.com/">Heroku</a> and have them host it “in the cloud.” Heroku supports several database types, and I know that I want to be as flexible as possible in my architectural decisions, so I decide to use DataMapper as the interface between my app and the underlying database. This allows me to write the same code to query the database, and DataMapper takes care of the implementation details (e.g SQL, Postgresql, sqlite, yaml, redis, rest). I settle on Postgresql.</p>
+<p dir="ltr">It is at this point that I need to convert my Ruby classes into database models. Having never worked with databases before, this is something of a leap for me. A model is essentially a little bit of code that tells DataMapper to tell the database how and what kind of information it should store. Compare the <a href="https://github.com/pszals/cluster/blob/a77c2da51744aa98c73cb5f8505ba7523c4e3078/lib/client.rb">Ruby version</a> of a client to the <a href="https://github.com/pszals/cluster/blob/master/lib/client_model.rb">DataMapper model</a>. The Ruby version can keep track of the client name and multiple tasks, and it designates the highest priority task simply as the first task added. The model does almost the same thing, but has a lot more functionality built in. Notice on line 9 the “has n, :task_models“ -- this corresponds to line 11 in the <a href="https://github.com/pszals/cluster/blob/master/lib/task_model.rb">task model</a>, “belongs_to :client_model.”</p>
+<p dir="ltr">The extra stuff that the models provide for is quite powerful. When a new client entry into the database is made, the record is created with a unique ID number. DataMapper allows you to sort by ID, arranged in ascending or descending order, sort by name, sort by time created, or any of the other fields in the model. And by including those lines “has n, :task_models” and “belongs_to :client_model” tasks are automatically associated with a given client when created.</p>
+<p dir="ltr">In addition to learning about data modeling, I also need to refine the UI. My client requested that I use <a href="http://getbootstrap.com/">Twitter Bootstrap </a>to incorporate some of their CSS into my project in order to freshen up the look. Some of the designers around me cringed when they hear this, but when they realized that I’m just a developer without much of a refined knowledge of designing with style, they laid off the disdain a little bit. Apparently Twitter Bootstrap is made just for people like me -- it allows for a “sleek, intuitive, and powerful mobile first front-end framework for faster and easier web development,” which is to say that they do all the hard design-ey work and maintenance while I can focus on the core functionality.</p>
+<p dir="ltr">Next time I’ll be showing off the final results and discussing how my last iteration meeting goes, this time with the end user, who actually requested the app be built!</p>

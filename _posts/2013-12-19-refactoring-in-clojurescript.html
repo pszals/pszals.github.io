@@ -1,0 +1,23 @@
+---
+layout: post
+title: Refactoring in Clojurescript
+categories: []
+tags:
+- clojure
+- clojurescript
+- refactoring
+status: publish
+type: post
+published: true
+meta:
+  _publicize_pending: '1'
+author: 
+---
+<p dir="ltr">In <a href="http://martinfowler.com/distributedComputing/refactoring.pdf">this article from 1998</a>, Martin Fowler talks about some reasons why we should refactor code. Fortunately for us, those reasons are still relevant today. His claim that “refactoring provides a way to manipulate and improve the code base without getting trapped in bugs” rings particularly true to me after the past few weeks of working in a codebase built entirely by apprentices. He also mentions a few other benefits to refactoring:</p>
+<p dir="ltr">- Makes the iterative process more controlled<br />- Speeds development<br />- Increases understanding of the code</p>
+<p dir="ltr">It is this last point that I wish to demonstrate with two recent examples of refactoring. For reference, the before and after are contained <a href="https://gist.github.com/pszals/8034223">here</a>. These two functions are in the add-widget namespace and provide the ability to add a some functionality to the dashboard app that is displayed on a big screen in our Chicago office.</p>
+<p dir="ltr">Take a look at the private function display-widget and see how much sense you can make of it at first glance. It takes a widget name and a unique id, and puts it together into some html, and appends that to the dom within a container object. If that was immediately apparent to you, great! You’re doing swell and can give yourself a pat on the back. But we can make the intention of that function clearer, therefore increasing our understanding -- and the understanding of anyone who has to work with this code after us!</p>
+<p dir="ltr">By creating some bindings within a let block, as demonstrated in the refactored display-widget function below. In it, we can clearly see that we have a widget-div and a container, then we add that widget into the container. Much better! We could probably even abstract out the hiccup call and put that in the binding as well.</p>
+<p dir="ltr">Next, check out the add function. What is it doing? Looks like it is taking an argument string and extracting things from it, such as a widget-name, param-key, widget-params, and a mysteriously named “args” -- different from “params”, apparently. In the refactored version of this function, notice that two additional functions needed to be created in order to clean things up a bit.</p>
+<p dir="ltr">The function “get-parameters” captures some functionality that “get-args” used to have, but its implementation is now more generalized to fetch any kind of parameters. The function “create-widget” now steps in to display and insert the newly created widget. Notice how much easier this function is to read: add takes user-input, parses some <a href="https://github.com/edn-format/edn">edn</a> from it, extracts the widget information from the edn, and creates a new widget from it all.</p>
+<p dir="ltr">By choosing to take the time to refactor your code, not only does it make it easier for others to work with -- especially newcomers to a project -- but it also makes it easier for yourself. It will now be much easier to add widgets in the future, and those widgets will be able to be configured in ways that we have not yet thought of. But now, this implementation will not have to change -- one less thing to worry about!</p>

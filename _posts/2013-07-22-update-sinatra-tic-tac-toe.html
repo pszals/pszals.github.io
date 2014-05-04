@@ -1,0 +1,33 @@
+---
+layout: post
+title: 'Update: Sinatra Tic Tac Toe'
+categories: []
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  geo_public: '0'
+  _publicize_pending: '1'
+author: 
+---
+<p dir="ltr">Task: Play human-human tic tac toe in a browser. Stories include:</p>
+<p dir="ltr">- place marker into a square<br />
+- marker switches for opponent<br />
+- when game is over, display a GAME OVER message</p>
+<p dir="ltr">After grappling with Sinatra and the swath of material I have had to rapidly assimilate, I think I have finally made some real progress on this latest story. As an example, I will walk you through what my Sinatra-hosted tic tac toe game can do!</p>
+<p dir="ltr">After starting things off with a ‘ruby config.ru’ command, Sinatra starts out running my sinatra_ttt.rb file (a.k.a. a route file, because it contains all the html routes for the app). This takes us to the home page at localhost:4567.</p>
+<p dir="ltr"><a href="http://pszalwinski.files.wordpress.com/2013/07/sinatra_start.png"><img class="size-full wp-image" id="i-1573" alt="Image" src="http://pszalwinski.files.wordpress.com/2013/07/sinatra_start.png?w=334" /></a></p>
+<p dir="ltr">After clicking on the link the user is taken to the configuration page filled with options. There are six radio buttons, each with a pre-selected option so that there are no nil/null errors.</p>
+<p dir="ltr"><a href="http://pszalwinski.files.wordpress.com/2013/07/sinatra_config.png"><img class="size-full wp-image" id="i-1574" alt="Image" src="http://pszalwinski.files.wordpress.com/2013/07/sinatra_config.png?w=295" /></a></p>
+<p dir="ltr">At this point the configuration does not do anything other than create some cookies that can be used later. So we click ‘Submit’ with the default configuration and are taken to a blank tic tac toe board:</p>
+<p dir="ltr"><a href="http://pszalwinski.files.wordpress.com/2013/07/sinatra_open_board.png"><img class="size-full wp-image" id="i-1576" alt="Image" src="http://pszalwinski.files.wordpress.com/2013/07/sinatra_open_board.png?w=650" /></a></p>
+<p dir="ltr">I start out by selecting the middle square:</p>
+<p dir="ltr"><a href="http://pszalwinski.files.wordpress.com/2013/07/sinatra_move_1.png"><img class="alignnone size-medium wp-image-1588" alt="Sinatra_Move_1" src="http://pszalwinski.files.wordpress.com/2013/07/sinatra_move_1.png?w=300" width="300" height="111" /></a></p>
+<p dir="ltr">And then select the top left square. Notice that the marker changes without having to do anything.</p>
+<p dir="ltr"><a href="http://pszalwinski.files.wordpress.com/2013/07/sinatra_move_21.png"><img class="size-full wp-image" id="i-1579" alt="Image" src="http://pszalwinski.files.wordpress.com/2013/07/sinatra_move_21.png?w=650" /></a></p>
+<p dir="ltr">Just to show that the marker switches back automatically, a third move:</p>
+<p dir="ltr"><a href="http://pszalwinski.files.wordpress.com/2013/07/sinatra_move_3.png"><img class="size-full wp-image" id="i-1580" alt="Image" src="http://pszalwinski.files.wordpress.com/2013/07/sinatra_move_3.png?w=650" /></a></p>
+<p>On the docket for tomorrow is to ensure that when a marker is placed on the board that it cannot be changed, and that a GAME OVER message is displayed when all of the squares are filled.</p>
+<p>The code for this project can be found here:<br />
+<a href="https://github.com/pszals/sinatra_ttt">https://github.com/pszals/sinatra_ttt</a></p>

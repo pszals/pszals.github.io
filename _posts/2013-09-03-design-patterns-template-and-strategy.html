@@ -1,0 +1,21 @@
+---
+layout: post
+title: 'Design Patterns: Template and Strategy'
+categories: []
+tags:
+- delegation
+- strategy pattern
+- template pattern
+status: publish
+type: post
+published: true
+meta:
+  _publicize_pending: '1'
+author: 
+---
+<p dir="ltr"><strong>Template</strong><br />
+The Template Method Pattern allows for part of an algorithm to be varied by creating a base class with a template method inside of it that controls the overall processing. Once that is implemented, then subclasses (that inherit from the base class, the ‘template’) can be used to fill in the details. Because inheritance is used there will always be coupling tied to the base class, which leads to rigidity.</p>
+<p dir="ltr"><strong>Strategy </strong><br />
+The Strategy Pattern is a variation on the Template Method Pattern, but is different in that it pulls the algorithm out into a separate object, called the context. The context class treats the strategies as interchangeable parts; they all look alike and they all perform the same function, as far as the context is concerned. Instead of using inheritance, upon which the Template Method Pattern is based, the Strategy Pattern uses composition and delegation to afford greater flexibility. Another plus of the Strategy Pattern is that the variations on implementation details are decided at runtime.</p>
+<p dir="ltr"><strong>Example</strong><br />
+My implementation of the Strategy Pattern can be seen in the runner class of <a href="https://github.com/pszals/SOLIDTTT/blob/master/lib/runner.rb">this version of tic tac toe</a>. Line 29 delegates to the @player object, regardless of whether that player is player 1, player 2, or a computer player. The algorithm doesn’t care. Look at that sweet, sweet strategic delegation in action!</p>

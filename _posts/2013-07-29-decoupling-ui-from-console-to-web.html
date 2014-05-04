@@ -1,0 +1,16 @@
+---
+layout: post
+title: 'Decoupling UI: From Console to Web'
+categories: []
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _publicize_pending: '1'
+  geo_public: '0'
+author: 
+---
+<p dir="ltr">The past few times my mentor has looked at my code one of the things he has told me is that I need to decouple my UI from the rest of the game. At the moment my game logic is dependent upon the way that the user interacts with the game, waiting for a person to type in their input, be it square selection, marker type, opponent type, board size, or whether or not they want to play again. This type of interface does not work for the web, however. Instead, the web interface is going to be checking the values selected for cookies and feeding those into the game logic.</p>
+<p dir="ltr">Until mocking out a <a href="http://pszalwinski.wordpress.com/2013/07/23/1599/">fake web-interfaced tic tac toe game</a>, I really had no idea what sort of problems I would encounter. I didn’t understand why my current architecture was not very modular, much less what good architecture is supposed to look like. Another apprentice, Angeleah, pointed me to<a href="http://angeleah.com/blog/2012/08/20/decoupling-ui-from-tic-tac-toe.html"> a blog post she wrote</a> when she was having a similar issue, which led me to three pages of notes from watching Uncle Bob talk about <a href="https://cleancoders.com/codecast/clean-code-episode-7/show">Architecture, Use Cases, and High Level Design</a> (warning: paywall).</p>
+<p dir="ltr">The crux of what I learned is that I should focus on building my code around particular use cases that are independent from the interface. It should not matter whether the application is used with a GUI, a web interface, or a console. Nor should it matter the type of database with which the application is interacting. Well-architected code will not depend on these decisions. Instead, one should delay these choices and build code that is delivery-agnostic. As Uncle Bob says, good architecture maximizes the number of decisions not made.</p>

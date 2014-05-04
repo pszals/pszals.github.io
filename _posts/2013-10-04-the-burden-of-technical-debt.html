@@ -1,0 +1,18 @@
+---
+layout: post
+title: The Burden of Technical Debt
+categories: []
+tags:
+- java server
+- refactoring
+status: publish
+type: post
+published: true
+meta:
+  _publicize_pending: '1'
+author: 
+---
+<p dir="ltr">When I started this project I knew I would be pressed for time. Two weeks to write a multi-threaded Java server isn’t very long, according to my sources. On top of this, until three weeks ago my only experience with Java was about an hour pairing on the <a href="http://butunclebob.com/ArticleS.UncleBob.TheBowlingGameKata">bowling kata</a> with another apprentice and a lesson on building a stack with <a href="http://www.8thlight.com/our-team/jim-suchy">Jim</a>.  This meant I needed to keep a close track of my tasks and budget my time accordingly. Unfortunately for me, I made some mistakes along the way that bottlenecked my productivity.</p>
+<p dir="ltr">One such mistake was not spending enough time reflecting and refactoring. Once a task was completed I checked off the box and moved on to the next spec. This worked pretty well up until the last couple days, including today. I saved the two most complicated tasks (basic authorization and multi-threading) for last so as to gather momentum and build my understanding of the language by focusing on the simpler specs first.</p>
+<p dir="ltr">By not taking as much time to refactor as I should have, I ended up with some pretty convoluted code that was difficult to work with. For example, my RequestParser class contains a method that looks <a href="https://gist.github.com/pszals/6817086">like this</a>. It is doing all sorts of things (<a href="http://en.wikipedia.org/wiki/Single_responsibility_principle">SRP</a> violation) and any time I want to add some particular functionality to the class I have to modify this method (<a href="http://en.wikipedia.org/wiki/Open/closed_principle">OCP</a> violation). As the week wore on and more functionality was added to this method, it became an increasingly large mental burden to take all effects and side effects into consideration. At times I would add something to the class in order to pass a test, but then another separate and unrelated test would fail. So I would have to go back and find a way to work around this new problem. If I had cleaned the code as I went along it would have been easier to reason without having to worry about the rigidity and fragility of my code.</p>
+<p>Moving forward, I plan to <a href="https://sites.google.com/site/unclebobconsultingllc/one-thing-extract-till-you-drop">extract till I drop</a>, or at least come close. And I’d also rather be programming to abstractions instead of implementations, cleaning up code like that seen in lines <a href="https://gist.github.com/pszals/6817086">17-25</a>. Those if statements are pretty difficult to read on the first pass too. Look out for some big refactorings. They should help get me out from underneath this burden of technical debt.</p>

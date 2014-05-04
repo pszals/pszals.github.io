@@ -1,0 +1,36 @@
+---
+layout: post
+title: 'Cluster: Iteration 2'
+categories: []
+tags:
+- apprenticeship
+- client management
+- partnership project
+status: publish
+type: post
+published: true
+meta:
+  _publicize_pending: '1'
+author: 
+---
+<p dir="ltr">If you recall the planning stages from the first post, they involved estimating point values for various stories, and the total points allocated were 4.25. The total amount of time spent on the iteration ended up being about 5 points. I had to work over the weekend a bit to ensure that I could deliver on time, but only a point or so. But because I could look at the agreed upon requirements, I knew clearly that I was ready to enter into the IPM (iteration planning meeting) with confidence that I had met all expectations.</p>
+<p dir="ltr">In my second meeting with the client we agree that the core functionality is adequate, but there are more features that should be added. My point-value estimations are in parentheses as (optimistic - realistic - pessimistic):</p>
+<p dir="ltr"><strong>Separate Creating Clients and Tasks (1-1-3)</strong><br />
+- Create a client<br />
+- Create a task for a client<br />
+- Ensure that those two behaviors are separate<br />
+(Act of creating a client should be separate from creating a task)</p>
+<p dir="ltr"><strong>Prioritize a Task (1-1-2)</strong><br />
+- Control how list of task appears<br />
+- When tasks are listed, order by priority (Priority can be established by number)<br />
+- Top-priority task should be listed on homepage</p>
+<p dir="ltr"><strong>Complete A Task (1-1-2)</strong><br />
+- From list of tasks, denote that task has been completed<br />
+- Provide way to complete task (button, ajax request)<br />
+- Completed tasks should never be highest priority</p>
+<p dir="ltr"><strong>Persist Data (2-3-4)</strong><br />
+- Data persists across restart of server<br />
+- Don't care about implementation details, so long as it works<br />
+(e.g. nosql, activerecord(gem), sequel(gem))</p>
+<p dir="ltr">The total number of weighted and averaged points for this iteration comes out to an even 9 points -- a full week’s worth of work. As you can see from the estimations, it looks like the story involving data persistence will take the most amount of work. I estimated this higher than the others because I have never worked with databases before and know that I’ll be needing to learn some database commands. I’ll also have to figure out how to connect a database to my code and server.</p>
+<p dir="ltr">I decide to save the data persistence story for last and get started on the others -- they seem pretty straightforward, and if all goes well I could be done with them in less than two days. I’ll be checking back in with the next post to tell you how it went! Will it be as easy as I thought? Will things crash and burn? Will there be enough hours in the week to get it all done? Stay tuned!</p>

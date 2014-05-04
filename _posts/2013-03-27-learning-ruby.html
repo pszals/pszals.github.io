@@ -1,0 +1,22 @@
+---
+layout: post
+title: Learning Ruby
+categories: []
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _publicize_pending: '1'
+author: 
+---
+<p>Ten days have passed since I started learning Ruby with the goal of writing a Tic Tac Toe game with unbeatable AI using Test Driven Development (TDD) to guide the project. So far I have written one test, and it is still failing. I'm not sure if I'm doing it right, but I realized I need to learn some more Ruby before continuing. Onward to the Koans.</p>
+<p>I've enjoyed working through them, as it's quite gratifying to see the green dots fill up the progress bar after each successfully passing unit test. I'm at 215/274 and hope to finish by the end of the week. It's also enjoyable realizing the benefits of my previous labor. Learning a second programming language definitely feels easier than learning the first one. I have a reference point for certain functional behaviors and can relate concepts -- that were once foreign to me -- from Python to what I'm currently working on. For example, class inheritance was a difficult concept to wrap my mind around when I first saw it (and admittedly it still has its challenges) but I'm no longer stupefied when trying to understand why a class seems to have an 'invisible' behavior or variable.</p>
+<p>Bob Martin's <em>Clean Code</em> is proving to be an engaging read. I have gained significant insight into best practices for agile software development. Selecting names, differences between objects and data structures, guidelines for error handling, and how to utilize unit tests have all been edifying. The latter being most important to my current goals, tying directly into TDD.</p>
+<p>The three laws of TDD:</p>
+<p>1.) No writing production code until a failing unit test is written.</p>
+<p>2.) No writing more of a unit test than is sufficient to fail.</p>
+<p>3.) No writing more of production code than is sufficient to pass the current failing test.</p>
+<p>In addition, unit tests should abide by the acronym FIRST. They should be <strong>fast</strong> - quick to run. They should be <strong>independent</strong> - their conditions or behavior should not rely on other tests. They should be <strong>repeatable</strong> in any environment, from QA to a laptop without internet. They should be <strong>self-validating</strong>, containing a boolean output of either passing or failing. Lastly, they should be <strong>timely</strong>, written just before the production code that makes them pass.<b><br />
+</b></p>
+<p>One other point I found important is that unit tests should be written with an emphasis on readability. They should be even more readable than the production code, as they serve as a sort of documentation. By crafting highly readable unit tests, it is made easier for another programmer to work with and understand your code. It also makes it easier to work on the code yourself. ;)</p>

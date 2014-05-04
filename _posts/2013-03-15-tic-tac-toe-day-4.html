@@ -1,0 +1,23 @@
+---
+layout: post
+title: 'Tic Tac Toe: Day 4'
+categories: []
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _publicize_pending: '1'
+author: 
+---
+<p>Now that I have a halfway decent method of putting X's and O's onto the game board, I need to make a function that will evaluate if there are three X's or three O's in a row, or if the game is tied when the board is full. I know all eight possible combinations that could make three in a row, and I know the state of the board after any given move, so the task now is to compare each of the eight winning board states to the list of known winning board states, and see if there is a match. I think I could use a list comprehension for this, since my board is just a set of three lists, and a winning combination is just a list of three positions. In order to do this, we will have to:</p>
+<p>1. Convert positions on board to tuples (they are already inputed as row, column)</p>
+<p>2. Convert board winning tuple combinations to triples</p>
+<p>3. Creat two lists of winning "X" and "O" triples</p>
+<p>4. Compare winning triples to converted board triples</p>
+<p>5. If the game is not yet complete, allow the next move to be made; if a winner is found, print "_ wins"; if the board is full and there is no winner, print "Cat's game"</p>
+<p>Here is a link to my <a href="https://gist.github.com/pszals/5166820">find_winner()</a> code.</p>
+<p>I added this to my <a href="https://gist.github.com/pszals/5149062">tictactoe.py</a> file and it doesn't work at all. Apparently I cannot use tuples as list indices, they must be integers. Not sure how to work around this one, time to take a break and ponder. I'm also still not sure why my first if statement under place_o() and place_x() does not catch entries outside of range(1, 4) but instead skips right to the elif, which then raises an IndexError: list index out of range. Never mind if the user accidentally hits RETURN...</p>
+<p>To-do list:</p>
+<p>1. Allow user to correct mistakes if a position off the board is specified, or if the user accidentally hits RETURN before inputing a position.</p>
+<p>2. Devise a way to evaluate if a winning board has been created.</p>

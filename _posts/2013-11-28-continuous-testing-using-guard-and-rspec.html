@@ -1,0 +1,25 @@
+---
+layout: post
+title: Continuous testing using Guard and Rspec
+categories: []
+tags:
+- continuous testing
+- guard
+- rspec
+- TDD
+status: publish
+type: post
+published: true
+meta:
+  _publicize_pending: '1'
+author: 
+---
+<p dir="ltr">After working on an internal project in Clojure with continuous testing, I decided to see if there were something that could allow the same functionality in Ruby in order to streamline my development. Continuous testing means that after any change to a file is made, either source files or test files, all tests are run without additional keystrokes or mouse movement. Turns out, there is! The first tool I found, and an outline of how to use it, is described below. This guide assumes you are already using Rspec in your Ruby development. If not, you can check out <a href="http://bit.ly/1b5OW6k">this resource</a>.</p>
+<p dir="ltr">In order to get started with Guard, you first need the package manager <a href="http://bundler.io/">Bundler</a>. If you don’t have it, just run “gem install bundler”. Once you’ve done that, create a new file in your root project directory called “Gemfile” and in that file add a few lines:</p>
+<p dir="ltr">group :development do<br />
+gem 'guard'<br />
+gem 'guard-rspec', require: false<br />
+end</p>
+<p dir="ltr">Once those are in place, run the command “bundle” (from the command line, of course) which will install all of your dependencies, including the guard gem that you just specified in your Gemfile. Just two more steps! Initialize the Guard app with “bundle exec guard init” to create an empty Guardfile, then use Bundler to run Guard: “bundle exec guard”.</p>
+<p dir="ltr">If you are using iTerm, you can right click and select “Split pane horizontally” in order to create a new window in the same window. Navigate to your project root and start TDD’ing away. Whenever you make a change to your files now, the rspec tests will run and tell you if the change you made altered the behavior your tests are keeping in line, and with the split pane, you can keep going back and forth between source and test without having to switch panes to execute the tests.</p>
+<p dir="ltr">If this post served only to confuse you, you can check out the readme for Guard <a href="https://github.com/guard/guard">here</a>.</p>

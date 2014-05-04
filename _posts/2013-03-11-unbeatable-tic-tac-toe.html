@@ -1,0 +1,46 @@
+---
+layout: post
+title: Unbeatable Tic Tac Toe
+categories: []
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _publicize_pending: '1'
+author: 
+---
+<p>I have been given the task to write a program that allows a user to play a game of Tic Tac Toe against the computer -- but the user must not ever win. In planning out the program I have begun some brainstorming:</p>
+<p>1. User interface - command line, user will be prompted to give the place on a 9-square grid for their next move</p>
+<p>2. What functions are necessary?</p>
+<ul>
+<li>Print the board</li>
+<li>User makes move</li>
+<li>Computer makes a move</li>
+<li>Computer decides best move (finds a win, blocks a win, or prepares to win)</li>
+<li>Compare triples (up, down, left, right, diagonal up, diagonal down)</li>
+<li>Convert triples to be compared mathematically (i.e. x=-1, o=1; take sum of all triples, optimize move based on highest or lowest triples sum, except if all three squares are filled). I have a feeling this won't be specific enough though.</li>
+</ul>
+<p>3. Data structure</p>
+<ul>
+<li><span style="line-height:14px;">Board will be represented to computer as string of numbers 1-9</span></li>
+<li>123, 456, 789, 159, 147, 258, 369, 357 are the eight possible winning triples</li>
+<li> In order to use the triples, we must find them first. Given a string "_ox__oo_x" we should have the triples _ox, __o, o_x, __x, __o, o__, xox, and xoo, respectively.</li>
+</ul>
+<p>4. Strategy (this is straight from Wikipedia, so it could be wrong):</p>
+<p>Player wins if first possible move is chosen from the following list:</p>
+<ul>
+<li><span style="line-height:13px;">Win - if there are two in a row of your kind, you can place a third to make three</span></li>
+<li>Block - if opponent has two in a row, you can place one to block the opponent</li>
+<li>Fork - create an opportunity with two threats to win</li>
+<li>Block a fork - two options. 1) create two in a row to force opponent to defend, so long as opponent does not create a fork by responding. 2) if opponent can fork, block opponent's fork from happening</li>
+<li>Center - player marks the center</li>
+<li>Opposite Corner - if opponent is in the corner, player marks opposite corner</li>
+<li>Empty Corner - player marks a corner square</li>
+<li>Empty side: player marks a middle square on any of the sides</li>
+</ul>
+<p>5. End Game</p>
+<ul>
+<li><span style="line-height:14px;">In order to win a game of Tic Tac Toe a player must set up a play such that no matter what the opponent does, the player will be able to connect three boxes in a row. Thus, the computer AI will need to make a move that sets up two triples that can be completed on the next turn so that even if the opponent blocks one of the triples, the other can still be completed.</span></li>
+</ul>
+<p>Next steps: design and build a game board so that two human opponents can play against one another.</p>

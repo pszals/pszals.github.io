@@ -1,0 +1,45 @@
+---
+layout: post
+title: .dup(ed!)
+categories: []
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _publicize_pending: '1'
+author: 
+---
+<p>For the past week I have been trying to figure out why my Tic Tac Toe game was not restarting correctly, and why it would not play at all when I added to the Runner class the method to convert the game board (stored as an array) into a string that could be printed into the form of a recognizable game board. There were quite a few steps that it took to get the <a href="https://github.com/pszals">working Human-Human game</a> I have now.</p>
+<p>First, I needed to refactor my class attributes. I used @board in two separate classes for two different meanings. In my Runner class, @board was an instance of the Board class, but in my Board class @board was the data that described the board. When I combined everything into the runner class, any time I tried to use @board things would either be incredibly confusing (I think I ended up using the word ‘board’ on one line at least five times!) or they would not work at all.</p>
+<p>I decided to rename the board in the board class to game_state and made it accessible to other classes using the handy attr_reader :game_state. In this manner I can now access the member variable from another class simply by calling @board.game_state, much clearer than the former @board.get_board, or after learning about attr_reader, @board.board. After discovering late one night that 56 out of 80 unit tests were failing when I made these renaming changes, I decided to throw in the towel and say mañana. My clearer head prevailed the next day as I discovered just how useful unit tests can be. Although most of my program was no longer working, all I had to do was follow the directions in order to get to exactly where I wanted to go. Having first read about this advantage in Clean Code, I reaped the benefits of maintaining a working suite of unit tests; it gave me the confidence to make changes to production code knowing that I could easily get back on track and would know exactly what needed to be fixed to get things working.</p>
+<p>Once I was absolutely certain I knew just what my program was doing, there still existed the mystery of the disappearing game board. After finishing a game, the user is prompted to play again. If the user chooses to do so, a method is called to return the game board to its original state. It turns out that the cause of my frustration was my lack of understanding of assignment properties. Although assignment involving decimals is intuitive (to me), assignment involving arrays functions quite differently.</p>
+<p>Variable assignment to decimal or string:</p>
+<p><code>&gt; a = 1<br />
+=&gt; 1<br />
+&gt;&gt; b = a<br />
+=&gt; 1<br />
+&gt;&gt; a -= 1<br />
+=&gt; 0<br />
+&gt;&gt; a<br />
+=&gt; 0<br />
+&gt;&gt; b<br />
+=&gt; 1<br />
+</code><br />
+(b is unchanged when a is acted upon)</p>
+<p>Variable assignment to array:<br />
+<code><br />
+&gt;&gt; a = [1, 2, 3]<br />
+=&gt; [1, 2, 3]<br />
+&gt;&gt; b = a<br />
+=&gt; [1, 2, 3]<br />
+&gt;&gt; b.slice!(1)<br />
+=&gt; 2<br />
+&gt;&gt; a<br />
+=&gt; [1, 3]<br />
+&gt;&gt; b<br />
+=&gt; [1, 3]<br />
+</code><br />
+(a and b are linked together)</p>
+<p>The method that converts the game_state into something that the IO class can output uses the Ruby .slice! function. Unbeknownst to me at the time, I was slicing up my board every time I tried to print out the board (because of the linked attribution mentioned above), thus preventing the game from progressing after the first print_board method was called. In order to prevent this from happening, I needed to create a duplicate of my game_state array. This is where the handy .dup comes in. By duplicating the game_state I can now safely .slice! the board every time I want to print it out, and the game_state board remains unaltered.</p>
+<p>Next on the agenda is to prompt the user to play against a computer player (store the computer player in the Player class) and incorporate the actions in the AI class into the behavior of the computer player.</p>

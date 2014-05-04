@@ -1,0 +1,18 @@
+---
+layout: post
+title: 'ERROR: cannot resolve symbol clojure -- Clojure into Java with IntelliJ IDEA'
+categories: []
+tags:
+- clojure
+- intellijidea
+- java
+status: publish
+type: post
+published: true
+meta:
+  _publicize_pending: '1'
+author: 
+---
+<p dir="ltr">The post <a href="http://clojurefun.wordpress.com/2012/12/24/invoking-clojure-code-from-java/">“Invoking Clojure code from Java”</a> demonstrates what I understand to be the “right” way to bring code from a Clojure project into a Java project, but it does not show how to configure IntelliJ to use a Clojure library. (The gen-class macro can also be used, but that does not provide as clean of a separation of concerns because it forces you to put Java code in your Clojure project.)</p>
+<p><strong>PROBLEM</strong>: When typing “import clojure.lang.*” IntelliJ makes the text for the word clojure appear in red and provides the error “cannot resolve symbol clojure” when hovering the mouse over the red clojure.</p>
+<p><strong>SOLUTION</strong>: From the project settings (File &gt; Project Structure (OSX) Ctrl + Alt + Shift + S (Windows)) select Libraries, click the + at the top left of the window. Select “from Maven” and search for clojure. Select the version you want to use (i.e. 1.5.0) and ensure that the path is correct (should point to the lib/ directory in your project tree) and hit OK. The package should allow you to now follow the instructions above to invoke Clojure code in your Java project.</p>

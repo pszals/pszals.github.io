@@ -1,0 +1,23 @@
+---
+layout: post
+title: Minimax, Negamax, and Alpha-beta pruning
+categories: []
+tags:
+- minimax
+- recursion
+- tic tac toe
+status: publish
+type: post
+published: true
+meta:
+  _publicize_pending: '1'
+  geo_public: '0'
+author: 
+---
+<p dir="ltr">I recall a conversation with my dad not too long ago about staying positive while trying finding solutions to difficult programming problems. He mentioned that you should always start out by imagining that a solution exists. Fortunately for me, the solution to minimax does indeed exist! Although that very fact may have caused me to stumble in my pursuit of an algorithm to incorporate into my tic tac toe game.</p>
+<p dir="ltr">After delving into recursion on Monday I set out yesterday to investigate various implementations and variations on <a href="http://en.wikipedia.org/wiki/Minimax">minimax</a>. The term minimax comes from the game theory idea of attempting to MINImize your MAXimum loss (maximin is a separate but alternative way to think about this concept, which seeks to MAXimize your MINimum gain). Thus, when playing tic tac toe a player using a minimax algorithm will choose the best possible move by assigning a value to each move based on all of the possible outcomes from every subsequent move, and choosing the move that either provides the most opportunities to win, or the least opportunities for the opponent to win.</p>
+<p dir="ltr"><a href="http://en.wikipedia.org/wiki/Negamax">Negamax</a> is a slight simplification of minimax, and its code implementation is based on the principle that an opponent who is using a perfect strategy will be looking to make the inverse of a minimax move, thus their move will be the NEGAtive of your MAXimum move. <a href="http://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning">Alpha-beta pruning</a> is a variant of minimax that runs slightly more efficiently because instead of evaluating every single POSSIBLE move, it stops evaluating all subsequent moves after it has been found that a move is worse than a previous move.</p>
+<p dir="ltr">I got into a bit of trouble when I decided to try and jump straight to a negamax solution that incorporates alpha-beta pruning. Because I didn’t start off by implementing my own minimax algorithm, my mind became quite jumbled as I pored over and tinkered with other people’s solutions. I ended yesterday feeling a bit discombobulated, and slightly overwhelmed after I watched a video another apprentice made in which he wrote an entire perfect tic tac toe program in under 50 minutes, then sped it up 3x so that it is watchable during a 15-minute break. I did, however, experience the value of writing tests to help one discover how an unfamiliar piece of code works under the hood.</p>
+<p dir="ltr">When I started off today my goal was simply to write a minimax (it’s a negamax) solution on my own using TDD. After completing the algorithm and getting all of my tests to pass I hooked it into my tic tac toe game only to find that although it played correctly in many situations, it still made some rookie mistakes. Thanks to the help of another apprentice, <a href="http://emptyingtheteacup.blogspot.com/">Nhu Nguyen</a>, we were able to write a some tests to try and tease out exactly what was causing these problems.</p>
+<p dir="ltr">After banging our heads against the desk because what appeared to be a complete minimax algorithm wasn’t functioning in the way we expected to, it was time to call in the big guns. One of the craftsmen, <a href="http://www.8thlight.com/our-team/rylan-dirksen">Rylan Dirksen</a>, took a quick look at the code and pointed out that the way I was assigning values to winning (+1), losing (-1) and tied (0) game states was likely causing some trouble. The values are arbitrary -- I could assign 1,000 points to winning and -1,000 points to losing -- so long as they are opposites. What ended up happening is that the Ruby compiler was rounding some of these values such that they were indistinguishable from one another, and the AI was simply picking the first position it came to, regardless whether it was the best. By changing these value assignments to floating point numbers, instead of integers, they retained their precision and allowed the rest of the algorithm to function properly. The same end result could also be achieved by adding a few zeros to the values instead.</p>
+<p dir="ltr">After having put a significant amount of time and mental effort into working on this feature, <a href="https://github.com/pszals/learning_ruby/blob/master/lib/unbeatable_ai.rb">I’m happy to show it off</a>. I’ll be spending my time tomorrow refactoring and cleaning it up in order to prepare for my IPM (iteration planning meeting) with my mentor tomorrow.</p>

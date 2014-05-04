@@ -1,0 +1,32 @@
+---
+layout: post
+title: Configuring NGINX Throttling with Boucher
+categories: []
+tags:
+- nginx
+- servers
+- throttling
+- widgets
+status: publish
+type: post
+published: true
+meta:
+  _publicize_pending: '1'
+author: 
+---
+<p dir="ltr">Throughout the duration of the Dojo Dashboard project we have contended with a persistent bug. When hitting the URL for the app on the staging server, not all of the widgets will be displayed, and when they do not show up, a small div the width of a column shows up where the a widget should be. We noticed a pattern though -- whenever this happened, it was always five widgets that showed up.</p>
+<p dir="ltr">We mentioned this to Micah, and he said something to the effect of, “Oh, yeah, I know why that is happening.” Great. Do enlighten us? “It has to do with the throttling of our servers.” One line of defense against a DOS attack is to throttle your server so that it only responds to requests at a fixed rate (average requests per second) but also has some leeway to handle extra requests in a given time frame (burst limit). A good way to think about this is to envision the process with the <a href="http://en.wikipedia.org/wiki/Leaky_bucket">Leaky Bucket</a> metaphor.</p>
+<p dir="ltr">One of the stories for this week is to make it so that an admin for 8th Light can alter the nginx (pronounced “engine ex”) configuration to any of the servers individually. In order to do this we needed to dig into <a href="https://github.com/8thlight/boucher">Boucher</a>, a custom-built open-source tool for provisioning servers. Put plainly, Boucher is “a suite of Rake tasks that simplify your AWS deployment strategy,” and we simply needed to add to the recipe a few lines of code. Just three simple steps!</p>
+<p dir="ltr">1) nginx ‘limit_req_zone’ module</p>
+<p dir="ltr"><a href="http://nginx.org/en/docs/http/ngx_http_limit_req_module.html">This module </a>is what allows us to throttle requests and is built into nginx. A little bit of googling helped us figure out where in our nginx_site.config.erb file to put our embedded ruby.</p>
+<p dir="ltr">2) cookbook definition</p>
+<p dir="ltr">Next up we needed add some params to our NGINX definition file like so:</p>
+<p dir="ltr">:avg_request_rate =&gt; 1<br />
+:burst_limit =&gt; 5</p>
+<p dir="ltr"> First in the params, then then also in the template block.</p>
+<p dir="ltr">3) cookbook recipe</p>
+<p dir="ltr">Finally we needed to add the correct configuration to our server recipe file so that all of the widgets will be loaded at once. Because we have 9 widgets plus 2 addition weather widgets for other cities and 1 extra metra widget, 15 seems like a good burst limit. We decided to stick with an average of 1 request per second though. To the nginx app “dojo do block we add:</p>
+<p dir="ltr">avg_request_rate 1<br />
+burst_limit 15</p>
+<p dir="ltr">Voila! After deploying and restarting our dojo server, all widgets load immediately! And because we use Boucher for all of our AWS deployments, adjusting throttling for any of the other servers is as simple as adding a couple lines to the cookbook definition and recipe for that particular server. For further reading on the topic you can check out this blog post by Micah about <a href="http://blog.8thlight.com/micah-martin/2012/10/30/servers-in-source-control.html">servers in source control</a>.</p>
+<p dir="ltr">P.S. If you haven’t figured it out yet, the reason why only five widgets showed up is because the nginx throttling defaults to a burst size of 5 and 1 request per second. Thus, the first request to the URL counts as one request, and five subsequent requests cause the widgets to show up, reaching the limit of six requests in one second.</p>

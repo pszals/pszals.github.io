@@ -1,0 +1,57 @@
+---
+layout: post
+title: 'Learning Ruby: Update'
+categories: []
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _publicize_pending: '1'
+  geo_public: '0'
+author: 
+---
+<p dir="ltr">Over the past two weeks I have spent much of my time concentrating on learning about big-picture aspects of programming and thinking about how I can apply those principles to my Tic Tac Toe game. I have completed reading Robert Martin’s Clean Code and have compiled a list of some of the most important concepts I have gleaned thus far:</p>
+<p>Objects and Data<br />
+- Objects expose behavior and hide data<br />
+- Data structures expose data but have no significant behavior<br />
+i.e. a class with public variables and no functions is a Data Transfer Object (DTO)</p>
+<p>Error Handling<br />
+- If error handling obscures logic, it is wrong<br />
+- Include informative error messages and pass them along with exceptions<br />
+- Instead of returning nil, throw an exception or return a SPECIAL CASE object</p>
+<p>Boundaries<br />
+- To integrate 3rd party code, write (learning) tests to better understand the code<br />
+- Rely minimally on 3rd party particulars for code interaction</p>
+<p>Three Laws of TDD<br />
+- No writing production code until failing unit test is written<br />
+- No writing more of a unit test than is sufficient to fail<br />
+- No writing more of production code than is sufficient to pass current failing test</p>
+<p>Classes<br />
+- Keep classes small (let the class name drive the class size)<br />
+- Single Responsibility Principle (a class or module should have one and only one reason to change)<br />
+- Throwing many responsibilities into one class is akin to tossing many tools into a toolbox<br />
+- Should have a small number of instance variables<br />
+- Dependency Inversion Principle (classes should rely on abstraction, not on concrete details)</p>
+<p>Cohesion<br />
+- Principle of using as many instance variables by as many methods within a class<br />
+- When classes lose cohesion, split them into smaller classes<br />
+- Open Closed Principle: Classes should be open for extension but closed for modification<br />
+i.e. to incorporate new features, ideally the system should be extended rather than modifying existing code.</p>
+<p>Systems<br />
+- It is a myth that we can get systems “right the first time”<br />
+- Separating concerns properly allows for organic growth<br />
+- Postpone (design?) decisions until the last possible moment, allowing for the most informed decision<br />
+- Use the simplest thing that will possibly work</p>
+<p>Emergence<br />
+- The majority of the costs for a software project is in long-term maintenance<br />
+- Simple Design (a la Kent Beck) should run all tests, contain no duplication, express the intent of the programmer, and minimize number of classes and methods</p>
+<p>Concurrency<br />
+- Decoupling what happens from when<br />
+- Uses: a) gather data from multiple websites simultaneously, b) serving multiple users concurrently, c) process many large data sets<br />
+- Examples include <a href="http://en.wikipedia.org/wiki/Producer-consumer_problem">producer-consumer</a>, <a href="http://en.wikipedia.org/wiki/Readers-writers_problem">readers-writers</a>, and <a href="http://en.wikipedia.org/wiki/Dining_philosophers_problem">dining philosophers</a></p>
+<p dir="ltr">Successive Refinement<br />
+- Like writing an essay, writing ever-improving multiple drafts is key to writing clean code<br />
+- As in the rules about classes, “Much of good software design is simply about partitioning -- creating appropriate places to put different kinds of code. The separation of concerns makes the code much simpler to understand.” p. 250</p>
+<p dir="ltr">In addition to this reading I have also been working diligently on the Ruby Koans, with only 10 more (of 284) to completion.</p>
+<p dir="ltr">As far as the Tic Tac Toe goes, I have fleshed out my design for the program and will include it in a subsequent next post.</p>

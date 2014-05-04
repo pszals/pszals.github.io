@@ -1,0 +1,19 @@
+---
+layout: post
+title: 'Game Loop: No Longer a Loop'
+categories: []
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _publicize_pending: '1'
+  geo_public: '0'
+author: 
+---
+<p dir="ltr">When playing tic tac toe in the console, the app will sit and wait for input to enter through the console from the user. Waiting cannot happen in a browser because the app gets started up again with every page refresh. This can be used to our advantage when connecting the app to the web because the state of the game can be saved in the browser cookies and injected into the game. The game can then evaluate whose turn it is, if the game is over, or where the computer player should make its move.</p>
+<p dir="ltr">I am now at a point where I can use the cookies to evaluate the board. When a tie or winner is found then the Sinatra_UI class sends a message to the server log. Two things need to happen from here in order to have a fully functional game:</p>
+<ol>
+<li>The game needs to send the ideal computer move in response to the cookies</li>
+<li>The Sinatra_UI class needs to update the HTML in order to display the appropriate messages or board updates in the browser.</li>
+</ol>

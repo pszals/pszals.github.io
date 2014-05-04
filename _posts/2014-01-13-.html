@@ -1,0 +1,36 @@
+---
+layout: post
+title: ''
+categories: []
+tags:
+- bash
+- environment variables
+- ruby
+- zsh
+status: draft
+type: post
+published: false
+meta: {}
+author: 
+---
+<p dir="ltr">Have you ever been inside a Ruby file and seen a line that looks something like this:</p>
+<p dir="ltr">ENV[‘FOO’] = bar</p>
+<p dir="ltr">and wondered to yourself, what exactly is going on here? Let’s try some things together and see if we can’t create some new understanding. The ENV is short for environment. This environment includes all of the information that is available to us when the console environment is loaded, and depends on some configuration files like your .bashrc or .zshrc to be set up completely. For example, if you are using <a href="http://www.zsh.org/">Zsh</a> you can open up your terminal window and type the command:</p>
+<p dir="ltr">&gt;&gt; vim .zshrc</p>
+<p dir="ltr">to bring up your “runtime configuration” or “resource control” file for Zsh. In this file I needed to add a line so that my programs could access my file path. This line looks something like this:</p>
+<p dir="ltr">&gt;&gt; export PATH=”/usr/local/bin . . .”</p>
+<p dir="ltr">The export command sets the next word to be an environment variable. The environment variable name is usually all uppercase, but can also be lowercase. The value of the variable must be a string, thus there must be quotes around it. To see what environment variables are available in your environment, open your terminal and enter the command:</p>
+<p dir="ltr">&gt;&gt; env</p>
+<p dir="ltr">Environment variables can also be defined on the fly. Enter the command:</p>
+<p dir="ltr">&gt;&gt; export FOO=”bar”</p>
+<p dir="ltr">The next time you print your environment variables, the last line on the list will say FOO=bar. Fire up your interactive Ruby REPL:</p>
+<p dir="ltr">&gt;&gt; irb</p>
+<p dir="ltr">and try this command:</p>
+<p dir="ltr">&gt;&gt; ENV[‘FOO’]</p>
+<p dir="ltr">What do you see? You should see something like:</p>
+<p dir="ltr">=&gt; “bar”</p>
+<p dir="ltr">From this you have now demonstrated that environment variables, when set outside of a running program, can be accessed within that program so long as it is run in the same environment. The Ruby syntax for accessing environment variables is ENV followed by an array operator with a string of that variable’s name as the key.</p>
+<p dir="ltr">One useful application of this concept is in the deployment of an open source app using basic authorization when you want to keep the username and password combination secret. For example, here is an <a href="https://gist.github.com/pszals/8393616">unsafe way</a> of publishing code for a deployed app. And here is a gist of a <a href="https://gist.github.com/pszals/8393615">safer way</a>. In order for the second way to work you must set the environment variables APP_USERNAME and APP_PASSWORD, as demonstrated above, before launching the app. This way, your secrets are kept secret, and anyone else who wants to launch the app on their own can set their own username and password environment variables.</p>
+<p dir="ltr">There are many other ways in which environment variables can be handy, and this short demo has just scratched the surface. For further exploration on the subject, check out these sources:</p>
+<p dir="ltr"><a href="https://devcenter.heroku.com/articles/config-vars">Setting Environment Variables in Heroku<br /></a><a href="http://www.ee.surrey.ac.uk/Teaching/Unix/unix8.html">Unix Environment Variable Lesson<br /></a><a href="http://www.tutorialspoint.com/unix/unix-environment.htm">Unix Environment Variable Tutorial</a></p>
+<p> </p>

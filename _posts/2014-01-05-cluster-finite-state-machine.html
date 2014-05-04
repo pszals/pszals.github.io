@@ -1,0 +1,21 @@
+---
+layout: post
+title: 'Cluster: Finite State Machine'
+categories: []
+tags:
+- cluster
+- datamapper
+- finite state machine
+- sinatra
+- task tracking app
+status: publish
+type: post
+published: true
+meta:
+  _publicize_pending: '1'
+author: 
+---
+<p dir="ltr">One of the latest feature requests for the “Cluster” task-tracking app involves being able to keep track of active clients, prospective clients, and clients who we once worked with but are no longer active, nor are they being pursued as a prospective client. After a brief chat with my mentor it became apparent that using a finite state machine would be a good, simple way to handle this situation. By adding a “status” property to the current client model we can capture the condition of each type of client: active, prospective, or dormant. If a client is in one of those states, it cannot be in one of the other states, thus, the kind of state is finite.</p>
+<p dir="ltr">By using the auto_upgrade! command in the Sinatra app file, DataMapper does some work for me behind the scenes that tries to reconcile any differences between the model files and the state of the database. For example, it notices that we’ve added a new property to the client model, so DataMapper adds a column “status” to the clients in the database. The value is initially nil, so when I gather all active clients, I search for those with a status of nil or “active.” Only active clients are in the database at this point, and any time a client is added in the future it will be required to have an “active,” “prospective,” or “dormant” status associated with it.</p>
+<p dir="ltr">There are a few places in the code where those strings are referenced to determine the state of the client. Rather than using the raw string, it was pointed out to me that it would be better if those strings were constants so that if a new person were to come and work on the project they would know that changing the string names to something that better suited them would not cooperate well with the rest of the system. <a href="https://gist.github.com/pszals/8272844">This is what it looks like </a>when the states are abstracted into their own module, and <a href="https://gist.github.com/pszals/8272871">this is what it looks like </a>when they are implemented to retrieve their respective clients.</p>
+<p>What if the scope of this project were to expand? What if the app needed to categorize hundreds or thousands of clients? There would likely be other attributes of clients that we might want to group them by, like project size, profit margin, likelihood to be converted from prospect status, or some other category we have yet to think of. What if a client could have both “active” status and some other property? At this point I would likely add another property to the model and create a similar method to fetch the clients that matched the constraints prescribed. Perhaps there is a better way?</p>

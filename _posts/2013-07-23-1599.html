@@ -1,0 +1,26 @@
+---
+layout: post
+title: 'Sinatra TTT: Embedded Ruby'
+categories: []
+tags:
+- sinatra
+- tic tac toe
+- web app
+status: publish
+type: post
+published: true
+meta:
+  geo_public: '0'
+  _publicize_pending: '1'
+author: 
+---
+<p dir="ltr">In order to display a GAME OVER message in the browser after all squares have been filled I realized I could do so in one of two ways. I could check the state of each cookie and display a message if each cookie held an X or an O; or I could create an incrementer cookie that counts up by 1 after each move. I chose the latter, due to its simpler implementation.</p>
+<p dir="ltr">In addition to being able to display a message, I wanted to make the input method simpler. Previously two clicks and two mouse gestures were required to select a square and then submit the move. I decided to change the radio buttons to submit buttons that accomplish both the selection and submission of information.</p>
+<p dir="ltr"><img alt="" src="https://lh3.googleusercontent.com/_s8igNMRGAgpPC-2kUl0dExQBr-dWrDmI14c9peC_yoldh4kHOE8CsmHNDtSI5m_wlmvM8WAwaEEBpR6p4AAVvANt8kQS_3I2fDK-I3vLD7bA3GLaBssNYnS" width="634px;" height="609px;" /></p>
+<p dir="ltr">As you can see from the image above, there are nine cookies associated with the nine squares on the board, a cookie that denotes the number of turns taken, and the three configuration cookies. When a button is pressed, the corresponding cookie is set to the value of the ‘marker’ cookie, and the marker alternates.</p>
+<p dir="ltr"><a href="http://pszalwinski.files.wordpress.com/2013/07/screen-shot-2013-07-23-at-2-14-46-pm.png"><img class="alignnone" alt="Screen Shot 2013-07-23 at 2.14.46 PM" src="http://pszalwinski.files.wordpress.com/2013/07/screen-shot-2013-07-23-at-2-14-46-pm.png?w=300" width="300" height="268" /></a></p>
+<p dir="ltr">Now the value of the marker cookie is an O, meaning that the next button pressed will put an O on the board, like so:<img alt="" src="https://lh4.googleusercontent.com/8HWfEFfrAXllwYEYplcE-cm4ALGdv33RFR--KcnqE8uwH2NBQM8Zz5ApaCWYuooNuzc3MIZNvCk_t5vf8SxkAGMAMcsilCHzoe5_pE41mAHNoWtr8Vf7ZENI" width="625px;" height="546px;" /></p>
+<p dir="ltr">This also updates the cookie for square 1 and increases the incrementer, indicating that 2 moves have been made. When all nine squares are selected, a GAME OVER message is displayed and an option to restart is given.</p>
+<p><img alt="" src="https://lh3.googleusercontent.com/7pGE94kTTkgL_WpKJVk0f-vNTfqhFAd9uFVjRPl6xog5ct1Dv3nKMPJn9_mf3PgeQ_CxSt-j3D6jIZP1u57tYkt8i-FlL_P9jF1rxe4KC26EwkhQgoMNOvVJ" width="628px;" height="548px;" /></p>
+<p dir="ltr">The restart button takes the user to the configuration screen. After configuration, all cookies are reset and the board shows up empty, ready for a new game:</p>
+<p><img alt="" src="https://lh3.googleusercontent.com/_s8igNMRGAgpPC-2kUl0dExQBr-dWrDmI14c9peC_yoldh4kHOE8CsmHNDtSI5m_wlmvM8WAwaEEBpR6p4AAVvANt8kQS_3I2fDK-I3vLD7bA3GLaBssNYnS" width="634px;" height="609px;" /></p>

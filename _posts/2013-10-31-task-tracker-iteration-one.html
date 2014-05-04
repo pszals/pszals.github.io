@@ -1,0 +1,33 @@
+---
+layout: post
+title: 'Cluster: Iteration 1'
+categories: []
+tags:
+- apprenticeship
+- client management
+- partnership project
+status: publish
+type: post
+published: true
+meta:
+  _publicize_pending: '1'
+author: 
+---
+<p dir="ltr">This is the second post in a series about my experience bringing an app from an idea to a deliverable product. You can read about the first part <a href="http://pszalwinski.wordpress.com/2013/10/29/my-first-real-app/">here</a>. This post will be slightly more technical, walking through some of the code and design decisions I made along the way.</p>
+<p>If you remember from last time, these are the agreed upon requirements for the first iteration:</p>
+<p><strong>Features</strong><br />
+- Create a new client<br />
+- Create a task<br />
+- Mark a task as being highest priority (only one can be highest priority)<br />
+- When looking at clients I see client name and top task for client</p>
+<p dir="ltr"><strong>Implementation</strong><br />
+- Clean markup (HTML)<br />
+- Normalized CSS (Require CSS file from somewhere else)<br />
+- Deploy on local machine</p>
+<p dir="ltr">When I see that I need to be able to create clients and tasks, I immediately think of making a client class and a task class. Each of these objects can have the desired behaviors -- the client class <a href="https://github.com/pszals/cluster/blob/a77c2da51744aa98c73cb5f8505ba7523c4e3078/lib/client.rb">looks like this</a> and the task class <a href="https://github.com/pszals/cluster/blob/a77c2da51744aa98c73cb5f8505ba7523c4e3078/lib/task.rb">looks like this</a>. (Here are the tests for the <a href="https://github.com/pszals/cluster/blob/a77c2da51744aa98c73cb5f8505ba7523c4e3078/spec/client_spec.rb">client</a> and <a href="https://github.com/pszals/cluster/blob/a77c2da51744aa98c73cb5f8505ba7523c4e3078/spec/task_spec.rb">task</a> classes.) As you can see from the client tests, I can add a new client, prioritize tasks, and find the highest priority task. A task contains fields for priority, description, and whether or not it has been completed. All that is left is to create a way to keep track of the clients -- how about a <a href="https://github.com/pszals/cluster/blob/a77c2da51744aa98c73cb5f8505ba7523c4e3078/lib/client_manager.rb">client manager</a> (client manager <a href="https://github.com/pszals/cluster/blob/a77c2da51744aa98c73cb5f8505ba7523c4e3078/spec/client_manager_spec.rb">tests</a>)!</p>
+<p dir="ltr">Now that I have the code, all I have to do is hook it up to Sinatra, a lightweight web framework that I have some experience with from connecting my tic tac toe game to a browser. The <a href="https://github.com/pszals/cluster/blob/a77c2da51744aa98c73cb5f8505ba7523c4e3078/lib/sinatra_cluster.rb">controller</a> has four basic routes, a GET for the <a href="https://github.com/pszals/cluster/blob/a77c2da51744aa98c73cb5f8505ba7523c4e3078/lib/views/home.erb">homepage</a> and a GET for the <a href="https://github.com/pszals/cluster/blob/a77c2da51744aa98c73cb5f8505ba7523c4e3078/lib/views/all_tasks.erb">task</a> page, and POST routes for each respective page. I can start it up by typing in ruby config.ru and land on a page that looks like this:</p>
+<p dir="ltr"><a href="http://pszalwinski.files.wordpress.com/2013/10/cluster-populated.png"><img class="size-full wp-image" id="i-1712" alt="Image" src="http://pszalwinski.files.wordpress.com/2013/10/cluster-populated.png?w=650" /></a></p>
+<p dir="ltr">Not very attractive (and straight out of nineteen-ninety-seven), so let’s add a CSS file I borrowed from someone:</p>
+<p dir="ltr"><a href="http://pszalwinski.files.wordpress.com/2013/10/cluster-withcss.png"><img class="size-full wp-image" id="i-1715" alt="Image" src="http://pszalwinski.files.wordpress.com/2013/10/cluster-withcss.png?w=650" /></a></p>
+<p dir="ltr">Still nothing to write home about, but it gets the job done. At this point, I try adding some clients with things for them to do, and voila! It works! I’m ready to demo! Although what I have isn’t very pretty, it’s functional enough to get feedback and direction from my client, which is what I need at this point. I can only speculate about the features or appearance that my client is looking for, so I’d rather not waste any time creating things that aren’t needed (or wanted).</p>
+<p dir="ltr">Next time I’ll talk about the first IPM and show how the code evolves afterwards. Look out for more code examples!</p>

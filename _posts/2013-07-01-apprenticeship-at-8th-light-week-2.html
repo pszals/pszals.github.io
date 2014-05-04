@@ -1,0 +1,30 @@
+---
+layout: post
+title: Apprenticeship at 8th Light - Week 2
+categories: []
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _publicize_pending: '1'
+author: 
+---
+<p dir="ltr">Last Friday I delivered the result of my first week’s work at 8th Light. I received positive feedback from my mentor, as well as a healthy dose of constructive criticism.</p>
+<p dir="ltr"><strong>Well done:</strong></p>
+<p dir="ltr" style="padding-left:30px;">- Delivered assigned story on-time (integrated minimax as decision maker for unbeatable AI in tic tac toe)<br />
+- Tests run quickly and correctly verify that code is working</p>
+<p dir="ltr"><strong>To improve:</strong></p>
+<p dir="ltr" style="padding-left:30px;">- Strive to make my code more functional (work towards less hard-coding and more abstraction)<br />
+- Minimize use of local variables -- they are a <a href="http://en.wikipedia.org/wiki/Code_smell">code smell</a></p>
+<p><strong>Stories for this week:</strong></p>
+<p dir="ltr" style="padding-left:30px;">- Build out a class that allows for the game to be configured to:<br />
+a) select marker types (any character A-Z or a-z)<br />
+b) choose board size (3x3 or 4x4)<br />
+c) choose opponent type (human or computer)</p>
+<p dir="ltr" style="padding-left:30px;">- Allow tic tac toe to be played on a 4x4 board<br />
+a) integrate <a href="http://www.youtube.com/watch?v=Ewh-rF7KSEg">alpha-beta pruning</a> so that a 4x4 game does not take an inordinate amount of time<br />
+b) algorithmically describe how to generate the winning combinations on the board (rows, columns, and diagonals)</p>
+<p dir="ltr" style="padding-left:30px;">- Fix input when selecting a square so that if more than one character is entered an error is thrown</p>
+<p dir="ltr"><strong>Refactoring:</strong></p>
+<p dir="ltr">    - Work to make IO class easier to do <a href="http://en.wikipedia.org/wiki/Dependency_injection">dependency injection</a> so that it looks more like <a href="https://gist.github.com/JoshCheek/5561023">this</a></p>

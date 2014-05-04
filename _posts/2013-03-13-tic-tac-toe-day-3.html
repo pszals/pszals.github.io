@@ -1,0 +1,22 @@
+---
+layout: post
+title: 'Tic Tac Toe: Day 3'
+categories: []
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _publicize_pending: '1'
+author: 
+---
+<p>I tried out a couple different ways to alternate back and forth between placing x's and o's, one of which was to include the place_x() and place_o() functions after an o or x was placed, respectively. It got a little messy, and does not evaluate if the board is full, much less if a winner has been made.</p>
+<p>I created a short runner function that evaluates if the board is full, and if not, alternates between placing x's and o's. Although I fixed the bug that caused the board to print multiple times if an incorrect board position was specified, I now can no longer specify a position off the board. I'll have to figure that one out next.</p>
+<p>Fixed and completed</p>
+<ul>
+<li>print board bug</li>
+<li><a href="https://gist.github.com/pszals/5156697">game runner</a></li>
+</ul>
+<p>To-do list:</p>
+<p>1. Allow user to correct mistakes if a position off the board is specified, or if the user accidentally hits RETURN before inputing a position.</p>
+<p>2. Devise a way to evaluate if a winning board has been created.</p>

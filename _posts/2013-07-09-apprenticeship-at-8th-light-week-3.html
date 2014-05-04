@@ -1,0 +1,16 @@
+---
+layout: post
+title: Apprenticeship at 8th Light - Week 3
+categories: []
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _publicize_pending: '1'
+author: 
+---
+<p dir="ltr">Last week was a bit short due to the holiday (Chicago’s July 4th July fireworks display was pretty underwhelming) so my IPM got pushed back to today. One valuable lesson I learned (seems to be a recurring theme of life in general) is that communication is key. Specifically, communicating with your client, or in my case my mentor, about what the exact requirements for the deliverable are. From our last IPM I assumed that the requirement to be able to play tic tac toe on a 4x4 board meant that the computer player needed to also function on that size board.</p>
+<p dir="ltr">If you've worked with minimax before, you know it can already be pretty slow on a 3x3 board, and it gets exponentially slower for larger board sizes. In order for the computer player to respond in a reasonable amount of time on a 4x4 board I would need to change my minimax algorithm to incorporate alpha-beta pruning or some sort of depth limit. This was taking quite a bit of time to figure out, and when I gave my mentor a progress update he told me that alpha-beta pruning was not one of the requirements and that I should focus on the requirements as he had them: build a configuration class that configures the game for the type of opponent (human or computer), the marker type (any character A-Z or a-z), and either a 3x3 board or a 4x4 board. An optimized minimax solution didn't make the list.</p>
+<p dir="ltr">It was a good thing for me to provide an update and to check in, otherwise I might have spent the rest of my time fiddling with alpha-beta pruning instead of building out the features that were actually important to my client. This way I was able to complete all of my stories for the current IPM.</p>
+<p>My next project is to turn my Ruby tic tac toe game into a gem and integrate it with Sinatra in order to do a demo on Friday. Today I was able to build a little ‘hello world’ Ruby gem using <a href="http://guides.rubygems.org/make-your-own-gem/">this guide</a>, and I also created a little Ruby app that uses Sinatra to say ‘Hello world!’ in my web browser, a la <a href="http://www.sinatrarb.com/intro.html">this guide</a>. I’ll need to play around with Sinatra a bit more before I figure out exactly what I will need to change in my IO class in order to accommodate input that is not coming from the terminal.</p>

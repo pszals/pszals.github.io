@@ -1,0 +1,15 @@
+---
+layout: post
+title: 'LPTHW Exercise 52: Learning web apps with the web.py framework'
+categories: []
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _publicize_pending: '1'
+author: 
+---
+<p>Problem:<br />Could not get nosetests to run, kept getting NameError: global name <br />'START' not defined.<br />Resolution:<br />Turns out in my map_tests.py file I had put "from bin.map import Room" instead of "from bin.map import *". Simple fix.</p>
+<p>Problem:<br />Tried to run my session tracking app locally, but kept getting 'socket.error: No socket could be created'<br />Resolution:<br />Needed to close the other web app open in another iTerm tab which was hogging port 80.</p>
+<p> </p>

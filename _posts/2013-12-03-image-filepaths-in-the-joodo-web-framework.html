@@ -1,0 +1,33 @@
+---
+layout: post
+title: Image filepaths in the Joodo Web Framework
+categories: []
+tags:
+- clojure
+- filepath
+- joodo
+status: publish
+type: post
+published: true
+meta:
+  _publicize_pending: '1'
+author: 
+---
+<p>Today we adjusted the way some images are displayed in one of the widgets on the dashboard. We had a problem though. When we turned the server on and initialized the widget, the images couldn’t be found. The absolute path for the folder with our images in them is:</p>
+<p>dojo-dashboard/resources/public/css/images</p>
+<p>and so we tried</p>
+<blockquote><p dir="ltr">[:img {:src (str ".images/" event-type ".png")}]</p>
+</blockquote>
+<p>No go.</p>
+<blockquote><p>[:img {:src (str "..images/" event-type ".png")}]</p>
+</blockquote>
+<p>Also no. How about:</p>
+<blockquote><p>[:img {:src (str "../../../../resources/public/css/images" event-type ".png")}]</p>
+</blockquote>
+<p>No way José.</p>
+<p dir="ltr">It turns out the correct way of doing it for our project is like so:</p>
+<blockquote><p>[:img {:src (str "css/images/my_image_here.png" event-type ".png")}]</p>
+</blockquote>
+<p>In doing some research into filepaths as they relate to CSS, I stumbled across <a href="http://css-tricks.com/quick-reminder-about-file-paths/">this handy set of advice</a>. Had I started with the <a href="http://www.joodoweb.com/tutorial/views">Joodo tutorial</a> on the subject, perhaps I would have discovered the solution much sooner. In their example images are placed outside of the CSS file (images aren’t CSS!) like so:</p>
+<blockquote><p>tutorial: [:img {:src "/images/logo.png"}]</p>
+</blockquote>

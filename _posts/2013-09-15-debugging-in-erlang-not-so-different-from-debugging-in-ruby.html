@@ -1,0 +1,22 @@
+---
+layout: post
+title: 'Debugging in Erlang: Not so different from debugging in Ruby'
+categories: []
+tags:
+- debugging
+- erlang
+- ruby
+status: publish
+type: post
+published: true
+meta:
+  _publicize_pending: '1'
+author: 
+---
+<p dir="ltr">When I start out debugging a particular problem, I usually begin by trying to print out important variables within the process I am inspecting. By testing my assumptions I can either verify that they are true, thus allowing me to draw further logical conclusions, or I am shown that my assumptions are incorrect, thus I can take steps back until I am confident that my understanding of the problem is accurate. My first experiences debugging in Erlang prompted me to write a post about all the difficulties and differences that I waded through as I tried to figure out a problem with one of my functions in TTT that algorithmically gathers the winning combinations of columns (<a href="https://github.com/pszals/erlang_ttt/blob/master/src/game_rules.erl">latest version here</a>, lines 75-80), but I have since discovered a better way.</p>
+<p dir="ltr">Erlang has a built in module called IO -- input and output -- that allows one to design an interface between the code and a console. I had used the function io:fwrite() in order to display messages in the IO class for my application, so I assumed I should use that function as my output debugging. But I quickly ran into problems when the data I was trying to inspect was not in the format expected by io:fwrite(). I then had to expend extra mental energy trying to mentally trace and anticipate the flow of data in order to determine the type of data I should tell io:fwrite() to output, be it a list, an integer, a string, or an atom. Unlike Ruby’s command ‘puts’, io:fwrite will not indiscriminately output data to the screen. If you try and call io:fwrite([list]), for example, you will get an error like:</p>
+<p>** exception error: bad argument</p>
+<p dir="ltr">    in function  io:format/3</p>
+<p dir="ltr">       called as io:format(&lt;0.24.0&gt;,[list],[])</p>
+<p>By itself, this isn’t altogether that bad -- you can see the value of the data you wanted to print. But this happens to cause the whole program to crash, and you can’t see what happens further down the line. In order to get around this, use of the built in erlang:display() function is highly recommended. This acts in an analogous way to the Ruby puts method, printing whatever data you give it. It’s use is specifically intended for debugging, and the <a href="http://erldocs.com/R15B/erts/erlang.html?i=0&amp;search=erlang%3adispla#display/1">Erlang documentation</a> warns that it should only be used for debugging.</p>
+<p dir="ltr">While on the topic of debugging, I have found <a href="http://pryrepl.org/">the tool Pry</a> to be incredibly helpful in Ruby. Pry offers runtime introspection, allowing you to insert a binding.pry command in your code in order to discontinue the execution of the program and ‘pry’ in, checking on the state of specific variables, instances of classes, view underlying source code, and all sorts of other cool things. The Erlang shell does allow for some of this functionality, for example the command b() will show a list of all current variable bindings. But because variables in Erlang are immutable, a tool like Pry would be far less useful for debugging than in an imperative language like Ruby.</p>

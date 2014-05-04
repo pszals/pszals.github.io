@@ -1,0 +1,14 @@
+---
+layout: post
+title: Accessing Class Attributes
+categories: []
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _publicize_pending: '1'
+author: 
+---
+<p dir="ltr">After a review of some of my Tic Tac Toe code it was recommended to me that I read up on attribute accessors as used in Ruby. These include attr_reader, attr_writer, and attr_accessor. Previously I had manually created my own functions with names like “get_board_class” or “get_io_class” in order to access these attributes that were passed into the Runner class. What attr_reader does is allow one to condense three lines of code down to one. An example of how this works can be found <a href="https://github.com/pszals/learning_ruby/commit/3fdb4e8fa8d754963a51722048ae664fe09b08a7">here</a>. Usage of the attr_writer is helpful when trying to manipulate an attribute based on an argument passed into it, and attr_accessor combines the power of both attr_reader and attr_writer to allow for both reading and writing. This <a href="http://stackoverflow.com/questions/5046831/why-use-rubys-attr-accessor-attr-reader-and-attr-writer">Stack Overflow post</a> was helpful in forming my understanding of the concept.</p>
+<p> </p>

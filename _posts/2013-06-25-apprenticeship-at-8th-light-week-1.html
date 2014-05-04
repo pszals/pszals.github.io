@@ -1,0 +1,24 @@
+---
+layout: post
+title: Apprenticeship at 8th Light - Week 1
+categories: []
+tags:
+- apprenticeship
+- craftsmanship
+- minimax
+- recursion
+- TDD
+- tic tac toe
+status: publish
+type: post
+published: true
+meta:
+  _publicize_pending: '1'
+author: 
+---
+<p dir="ltr">Today was the start of my first full week as an apprentice at <a href="http://www.8thlight.com/">8th Light</a>. Every morning an apprentice standup meeting takes place when we each take a turn talking about what we worked on the day before, what we’ll be working on that day, and any other big picture ideas or announcements. I received nodding heads and knowing looks when I declared my assignment for the week: build and integrate a recursive minimax algorithm to integrate into my game of tic tac toe.</p>
+<p>I have been told that delving into this topic of recursion is one of the hardest things I will have to do as a software craftsman working in web development. (I’ve read <a href="http://www.youtube.com/watch?v=DCdGlxBbKU4">concurrent programming can be more challenging</a>, but I have hardly a clue what that is all about at this point.) Admittedly it has been quite perplexing: I have put off tackling this feature for quite some time, and even programmed an alternate solution to create an unbeatable computer player. Thankfully, I am fortunate to be surrounded by a dozen or so talented, smart, and helpful apprentices who are eager to assist me in my quest for knowledge and understanding.</p>
+<p>One such apprentice, <a href="http://telladifferentstory.tumblr.com/">Kelly Steensma</a>, pointed me to a <a href="https://www.khanacademy.org/science/computer-science/v/recursive-factorial-function">series of Khan Academy videos</a> addressing exactly what I have been trying to understand. In this video Khan uses Python to demonstrate two different ways to find the nth number in the <a href="http://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci</a> sequence. First he uses a while loop in an iterative way, then he tasks the viewer with attempting to create a recursive solution. When he revealed his solution to the Fibonacci number finder I was impressed with the elegance and disappointed that mine seemed so clunky. Below are my solution (top) and his (below). Turns out that mine works better! (This exercise also taught me about default variable assignment, line 2.)</p>
+<p dir="ltr">https://gist.github.com/pszals/5855525</p>
+<p>Recursion means that the function calls itself, and that can become pretty resource intensive. Khan’s solution builds up a large stack of self-referencing function calls that takes up a lot of memory (or processing power, or something like that -- more to learn!). Because the solution I wrote passes the list of Fibonacci numbers as an argument into each subsequent function until the index of the desired number is achieved, it can access the whole list of numbers to pull the nth number in the sequence, therefore reaching the correct solution much more quickly.</p>
+<p dir="ltr">The next step is to integrate this knowledge of recursion into a practicable module that can search through all of the possible moves on a tic tac toe board to find the best possible move. In the spirit of TDD, my approach has started with a test I wrote for my AI class. I'm trying to get my minimax algorithm to pass the simplest case of completing three in a row. Sounds like a project for tomorrow!</p>

@@ -1,0 +1,21 @@
+---
+layout: post
+title: Building a server in Java
+categories: []
+tags:
+- fitnesse
+- java
+- networking
+status: publish
+type: post
+published: true
+meta:
+  _publicize_pending: '1'
+  tagazine-media: a:7:{s:7:"primary";s:0:"";s:6:"images";a:0:{}s:6:"videos";a:0:{}s:11:"image_count";i:0;s:6:"author";s:8:"47075969";s:7:"blog_id";s:8:"48201574";s:9:"mod_stamp";s:19:"2013-09-20
+    03:22:11";}
+author: 
+---
+<p dir="ltr">As part of the apprenticeship at 8th Light, all apprentices are required to build a web server that passes a suite of tests known as <a href="https://github.com/8thlight/cob_spec">cob_spec</a> via <a href="http://fitnesse.org/">FitNesse</a>. Some apprentices have written the server in Clojure, while most write it in Java. Theoretically, the server could be written in any <a href="http://en.wikipedia.org/wiki/Turing_completeness">Turing complete</a> language, however Java has vast resources built into its many libraries that make building a server more accessible.</p>
+<p dir="ltr">According to Elliotte Harold in his book <a href="http://www.amazon.com/Network-Programming-Elliotte-Rusty-Harold/dp/B00CVE62EQ/ref=cm_cr_pr_product_top">Java Network Programming</a>, Java is the first programming language designed from the ground up with networking in mind, and it is easy for Java applications to send and receive data across the Internet. I find it important to fully understand the underlying concepts because they provide a backbone for e-commerce, collaborative computing, and global communication. In addition, without the power of networked applications I would most likely not be getting paid to do the learning and work that is currently supporting my livelihood.</p>
+<p dir="ltr">The first concept to grapple with is that of sockets. A socket is simply one endpoint of a two-way communication link between two programs running on a network. What is an endpoint, you ask? An endpoint is the combination of an IP address and a port number. And a port number? That identifies the specific channel upon which a socket can communicate. Having multiple ports is necessary so that a computer can send and receive information that pertains to more than one operation at a time.</p>
+<p dir="ltr">So back to sockets. The java.net class has a system-independent implementation of the server side of a client/server socket connection called ServerSocket. Whew, that was a mouthful. That basically means that the code can be executed to turn pretty much any computer running it into a server. In my next post, I will go into further depth as to how to use this class, and others related to it, to begin constructing a basic server in Java. I will also delve into HTTP and the how the various components of that protocol function. Look forward to more posts about networking and Java!</p>

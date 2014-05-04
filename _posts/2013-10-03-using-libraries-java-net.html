@@ -1,0 +1,21 @@
+---
+layout: post
+title: 'Using Libraries: Java.net'
+categories: []
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _publicize_pending: '1'
+author: 
+---
+<p dir="ltr">In addition to the Socket class, the Java.net library also contains a particular class which I learned of about a day later than I needed to. The name of the cob_spec test, “Parameter Decode,” should have given me a hint towards choosing the words I should use to search for in looking for the correct tool for the job, but I noticed that it looked like this test was asking me to convert the <a href="http://en.wikipedia.org/wiki/Hexadecimal">hexadecimal</a> code in the query string into normal ASCII symbols, and thought I knew how to tackle this one. The hex codes are separated by percent signs (the test in FitNesse <a href="http://i.imgur.com/1x6GRsi.png">looks like this</a>), so I figured I could separate the hex codes from the text by splitting the string literal into a string array on the percent signs and then converting each element from hex to string using the parseInt method from the Integer class like so:</p>
+<p dir="ltr">    int decimal = Integer.parseInt(String hexCodeForSpace, 16);</p>
+<p dir="ltr">I could then cast this int as a char and append it onto a string builder thusly:</p>
+<p dir="ltr">    stringBuilder.append((char) decimal);</p>
+<p dir="ltr">and then return the string from the string builder like this:</p>
+<p dir="ltr">    return stringBuilder.toString();</p>
+<p dir="ltr">When I first tried to convert each element from hex to symbol like this, it didn’t quite work because “variable_1=Operators” isn’t a hex code. So I tried to convert each element, but only if the length of that element was exactly two. This almost worked, but then I had to add spaces around the equals sign so that it looked like “variable_1 = Operators”. And then THIS almost worked, but it added spaces around the equals signs that had been decoded from hexadecimal. I noticed a few other complications around this time as well.</p>
+<p dir="ltr">If you looked more closely than I did at the query string in the FitNesse test above, you might have noticed that it contains words represented by string literals separated by the hex code for a space (20). This caused me some trouble because I would have to separate the codes from words, and I didn’t want to have to read the string character by character in order to decide if the character was part of a word or hex code. It was at this point that I asked another apprentice if my approach made sense. And it was at this point that I was reminded of the Java.net library.</p>
+<p dir="ltr">Within this library is the URLDecoder class that contains the method decode(String s, String encoding). This guy. In browsing <a href="http://docs.oracle.com/javase/6/docs/api/java/net/URLDecoder.html">the docs for the class</a> I discovered that the method does the opposite of the encode(String s, String encoding) method (i.e. the method used to create the query string in the first place ; the parameter I needed to decode). This is my code <a href="https://gist.github.com/pszals/6804279">before</a> using the URLDecoder and this is the code <a href="https://gist.github.com/pszals/6804292">after</a> using it.</p>

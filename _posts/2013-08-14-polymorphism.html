@@ -1,0 +1,25 @@
+---
+layout: post
+title: Polymorphism
+categories: []
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _publicize_pending: '1'
+  geo_public: '0'
+author: 
+---
+<p dir="ltr">According to the Wikipedia <a href="http://en.wikipedia.org/wiki/Polymorphism_in_object-oriented_programming">article</a> on polymorphism in the context of object oriented programming, “the primary usage of polymorphism is the ability of objects belonging to different types to respond to method, field, or property calls of the same name, each one according to an appropriate type-specific behavior.” This means that if I have multiple types of players in a game, I can give them all a make_move function. When that function is called it can alternate whose turn it is, changing which player responds to the make_move function. Here’s an example.</p>
+<p dir="ltr">class AI &lt; Player<br />
+..def make_move<br />
+....perfect_move<br />
+..end<br />
+end</p>
+<p dir="ltr">class Human &lt; Player<br />
+..def make_move<br />
+....get_input<br />
+..end<br />
+end</p>
+<p dir="ltr">In the above example both Human and AI classes inherit from a parent Player class with a function make_move. Both will respond to the same function call but will return different implementations.</p>

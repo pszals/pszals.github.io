@@ -1,0 +1,17 @@
+---
+layout: post
+title: 'Simple Git Merge Conflict: Resolved'
+categories: []
+tags:
+- git
+- merge conflict
+status: publish
+type: post
+published: true
+meta:
+  _publicize_pending: '1'
+author: 
+---
+<p dir="ltr">The first time I encountered a merge conflict, I was paralyzed. Git wouldn’t let me continue developing. I didn’t even really care about the changes I had made, I just wanted to get out so I could move on. I tried following Git’s advice to open and inspect the file to pick the changes I wanted to go with, but I was even more perplexed by all the &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; and &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; and =========. It turns out resolving a merge conflict in a single file isn’t really all that difficult.</p>
+<p dir="ltr">Above the row of equals signs is the old version of your code, and below the equals signs is the revision. In order to resolve the conflict, all you have to do is remove each line that contains the chevrons and equals signs (including any , and pick the version of your code that you want to be committed. Once you have done that, save your changes, run your tests (you do have those, right?) to make sure you didn’t break anything, re-add the file that contained the conflict, and try committing your changes again.</p>
+<p>If you run into another merge conflict, repeat the steps above until all of your files have been committed. For further reading, check out the docs <a href="http://git-scm.com/book/en/Git-Branching-Basic-Branching-and-Merging#Basic-Merge-Conflicts">here</a>. The UCSC Genome Browser Wiki is a great resource that explains other ways Git can give you problems -- and how you might solve them -- <a href="http://genomewiki.ucsc.edu/index.php/Resolving_merge_conflicts_in_Git">here</a>.</p>

@@ -1,0 +1,25 @@
+---
+layout: post
+title: Apprenticeship at 8th Light - Week 4
+categories: []
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  geo_public: '0'
+  _publicize_pending: '1'
+author: 
+---
+<p dir="ltr">Task: Play tic tac toe in a browser</p>
+<p>Last week I spent a significant amount of time chasing down a configuration bug in my .rvmrc file. I was getting a message:</p>
+<p dir="ltr">“error: cannot load such file -- rack/protection/frame options”</p>
+<p dir="ltr">I didn’t really know what rack is or does, and after some tinkering around my understanding is that it is part of the framework upon which Sinatra is built, so that meant something was wrong with the configuration. Once I got rid of the .rvmrc file everything started working again. This was both enlightening and a relief. Enlightening, because I found the solution to my problem. A relief, because had I continued down the route of setting up a virtual machine (or multiple tries at setting up a VM) I could have wasted even more time because the problem .rvmrc file would have remained in my VM load path, causing the error to persist.</p>
+<p dir="ltr">After resolving this issue I was able to map out some of the things I will need to learn in order to make my tic tac toe game playable on the web. A partial list:</p>
+<p dir="ltr">- HTML<br />
+- HTTP methods<br />
+- web cookies<br />
+- embedded Ruby<br />
+- API patterns<br />
+- Ruby Gem creation and use</p>
+<p dir="ltr">Ultimately my user interface class must be abstracted one level further such that any user interface can be substituted for it. In addition, the Liskov Substitution Principle must be adhered to. The LSP states that “Subtypes must be substitutable for their base types” (Agile PPP, 111). That is, any other user interface should be able to substitute in place of my console user interface without interfering with any other parts of the program.</p>

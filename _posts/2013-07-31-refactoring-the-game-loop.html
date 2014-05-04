@@ -1,0 +1,22 @@
+---
+layout: post
+title: Refactoring the Game Loop
+categories: []
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _publicize_pending: '1'
+  geo_public: '0'
+author: 
+---
+<p dir="ltr">Most of today was spent trying to refactor my game loop and cleaning up code in the process. My goal is to get to the point where I can gather the information contained in the cookies set by the Sinatra app (board state, whose turn it is to make a move, whether the opponent is a computer or human) and inject it into the game loop and expect whatever gets returned to indicate whether the UI should:</p>
+<p>a) Continue playing<br />
+b) Announce winner<br />
+c) Announce tie<br />
+d) Display error</p>
+<p dir="ltr">It looks like I need to make my game take commands from the UI.</p>
+<p dir="ltr">…</p>
+<p dir="ltr">I just accidentally discovered how to move through a file more quickly in VIM. By holding SHIFT and hitting the { or } keys I can move the cursor from paragraph to paragraph. Look at me navigate this document! Mmmm, fast!</p>
+<p dir="ltr">…</p>

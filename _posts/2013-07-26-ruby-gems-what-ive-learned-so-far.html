@@ -1,0 +1,27 @@
+---
+layout: post
+title: 'Ruby Gems: What I’ve learned so far'
+categories: []
+tags:
+- RubyGems
+status: publish
+type: post
+published: true
+meta:
+  _publicize_pending: '1'
+  geo_public: '0'
+author: 
+---
+<p dir="ltr">What is a gem?<br />
+Simply put, a gem is a package that wraps a file or set of files (like an application).</p>
+<p dir="ltr">Why use a gem?<br />
+Gems are a convenient way to share software. One popular gem is Rspec, the tool I use for doing unit tests in Ruby. I recently turned my tic tac toe game into a gem in order to share it more easily.</p>
+<p>How do you make a gem?<br />
+In order to turn my game into a gem I had to create a .gemspec file. This file specifies (hence the spec in the filetype) the contents and labeling of the gem. For <a href="http://guides.rubygems.org/what-is-a-gem/">a more in-depth tutorial</a> on how to create a gem, rubygems.org is a great resource.</p>
+<p>How do you use a gem?<br />
+Before today, if you wanted to play my game you had to use <a href="https://github.com/">Github</a> to access <a href="https://github.com/pszals/learning_ruby">my repository</a>, clone that repository onto your machine, enter 'chmod +x bin/tictactoe', then enter 'bin/tictactoe' to start things up. The steps now, assuming you have Ruby 1.9 or higher installed:</p>
+<p dir="ltr">1.) In your terminal, enter ‘gem install pszals_ttt’. This will cause RubyGems (the package manager for Ruby) to look at the RubyGems that are hosted online, pull the gem named ‘pszals_ttt’ and install it onto your machine. The gem is now playable and accessible from your command line.<br />
+2.) Start irb<br />
+3.) Enter "require 'runner'"<br />
+4.) Enter ‘Runner.new(Console_UI.new).call’<br />
+5.) Follow the instructions to play a game of tic tac toe against a friend, computer, or yourself!</p>
