@@ -1,0 +1,61 @@
+---
+layout: post
+title: 'PGP Fundamentals: Diffie-Hellman Key Exchange'
+categories: []
+tags:
+- encryption
+- pgp
+status: publish
+type: post
+published: true
+author: Philip Szalwinski 
+---
+<p> After watching <a href="https://twitter.com/ecmendenhall">@ecmendenhall</a>’s talk about GPG tools I was inspired to learn more about encryption. The <a href="https://www.youtube.com/watch?v=3QnD2c4Xovk">video</a> demonstrated the <a href="http://en.wikipedia.org/wiki/Diffie-Hellman_key_exchange">Diffie-Hellman</a> Key Exchange, in which Alice and Bob communicate while an omnipresent observer stands by, unable to determine the true meaning of their communication despite watching every bit of information passing between them.  </p>
+
+<p> Because I couldn’t pause the video during the presentation, and because, well, math, I wasn’t able to fully grok how it worked. So when I got home today I decided to write some code to help explain it to myself.  </p>
+
+{% highlight ruby %}
+class DiffieHellmanKeyExchange
+  def initialize(prime_modulus, generator)
+    @prime_modulus = prime_modulus
+    @generator     = generator
+  end
+
+  def create_public_message(secret_key)
+    @generator ** secret_key % @prime_modulus
+  end
+
+  def decrypt_common_secret(message, secret_key)
+    message ** secret_key % @prime_modulus
+  end
+end
+{% endhighlight %}
+
+<a>Naturally, there are some tests.</a>
+
+{% highlight ruby %}
+require "diffie_hellman_key_exchange"
+
+describe DiffieHellmanKeyExchange do
+  before(:each) do
+    @exchange = described_class.new(23, 5)
+    @alices_key = 6
+    @bobs_key = 15
+  end
+
+  it "creates a public message from a secret" do
+    @exchange.create_public_message(@alices_key).should == 8
+    @exchange.create_public_message(@bobs_key).should == 19
+  end
+
+  it "decrypts the common secret" do
+    bobs_message = 19
+    alices_message = 8
+
+    @exchange.decrypt_common_secret(bobs_message, @alices_key).should == 2
+    @exchange.decrypt_common_secret(alices_message, @bobs_key).should == 2
+  end
+end
+{% endhighlight %}
+
+<p> For further consideration, now that there’s a way to agree upon a cipher, how could this key exchange be used as part of a set of encryption tools?  </p>
