@@ -13,3 +13,80 @@ html {
   html { font-size: 120%; }
 }
 
+.container {
+  margin: 0 auto;
+  max-width: 48rem;
+  width: 90%;
+}
+
+.column {
+  float: right
+}
+
+.footer {
+  text-align: center;
+}
+
+.footer a {
+  color: #999;
+}
+
+.header {
+  background-color: aliceblue;
+}
+
+.home {
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:link {
+  color: #999;
+
+}
+
+navigation {
+  padding: 0;
+  width: 100%;
+}
+
+navigation.hidden {
+  heigth: 0;
+}
+
+navigation.visible {
+  heigth: auto;
+}
+
+navigation ul {
+  margin: 0.5rem 0 0 0;
+  overflow: hidden;
+  padding: 0;
+  float: top
+}
+
+navigation li {
+  list-style: none;
+  margin-bottom: 0;
+  text-align: center;
+  padding: 0.8rem;
+}
+
+navigation li a {
+  color: #999;
+  font-size: 1rem;
+  font-weight: 600;
+  display: block;
+  -moz-transition: color 0.3s ease;
+  -ms-transition: color 0.3s ease;
+  -webkit-transition: color 0.3s ease;
+  transition: color 0.3s ease;
+  padding: 0.8rem 0;
+}
+
+pre {
+  background: lightgrey;
+}

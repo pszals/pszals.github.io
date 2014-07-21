@@ -15,31 +15,34 @@
     </head>
     <body>
 
-      <header>
-        <ul class="navigation">
-          <li><a href="/">Home</a></li>
-          <li><a href="/about">About</a></li>
-          <li><a href="/blog">Blog</a></li>
-        </ul>
-      </header>
+        <div class="container">
+          <header>
+            <navigation>
+            <ul class="header">
+              <li class="column"><a href="/">Home</a></li>
+              <li class="column"><a href="/about">About</a></li>
+              <li class="column"><a href="/blog">Blog</a></li>
+            </ul>
+            </navigation>
+          </header>
+        </div>
         <div class="site">
 
-          {{ content }}
+          <div class="container">
+            {{ content }}
+          </div>
 
           <div class="footer">
-            <div class="contact">
-              <p>
-                Philip Szalwinski<br />
-                Software Craftsman | 8th Light Inc.<br />
-                pszalwinski@gmail.com
-              </p>
-            </div>
-            <div class="contact">
-              <p>
-                <a href="https://github.com/pszals">Github</a><br />
-                <a href="https://twitter.com/pszals">Twitter</a><br />
-                <a href="https://www.linkedin.com/pub/philip-szalwinski/5/97/695">LinkedIn</a>
-              </p>
+            <div class="container">
+              <navigation>
+                <ul>
+                  <a href="https://github.com/pszals">Github</a>
+                  <a> | </a>
+                  <a href="https://twitter.com/pszals">Twitter</a>
+                  <a> | </a>
+                  <a href="https://www.linkedin.com/pub/philip-szalwinski/5/97/695">LinkedIn</a>
+                </ul>
+              </navigation>
             </div>
           </div>
         </div>
