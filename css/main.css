@@ -39,13 +39,25 @@ html {
   text-align: center;
 }
 
-a {
-  text-decoration: none;
+.post-item {
+  margin: .25rem;
 }
 
-a:link {
+.post-date {
   color: #999;
+}
 
+.post-title {
+  color: black;
+}
+
+.posts {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: #999;
 }
 
 navigation {
