@@ -1,0 +1,80 @@
+---
+layout: post
+title: 'Algorithmic Complexity and Grapefruits'
+categories: []
+tags:
+- algorithms
+- big o notation
+status: publish
+type: post
+published: true
+author: Philip Szalwinski 
+---
+
+<p>
+What does it mean to say a program is performant? If it does what it says it does, that makes it useful, right? But if it does what it says it does, and it takes over a lifetime to do it, then how useful is it really?
+</p>
+
+<p>
+In order to describe performance, which can depend on myriad variables and be difficult to think about, we use something called Big O notation. This allows us to talk about growth: the growth in complexity of an algorithm. As a function grows in complexity, the amount of time it takes to execute grows linearly.
+</p>
+
+<p>
+If you have ever taken a calculus course, you are likely aware that one of the fundamental concepts is that of infinity. Relating to algorithmic complexity, as a number grows larger, the effect that it has on the procedure at hand becomes more significant. Let’s look at grapefruit as an example. 
+</p>
+
+<p>
+Say we want to eat some grapefruit. Troublingly, grapefruit is hard to eat. To make it harder, we can saw out wedges from between the membranes. Our eating habits can be broken down further as we can pick apart each of the cells within each wedge, until we have a pile of zesty globules of grapefruit juice. And smaller still are each of the water molecules, surrounded by grapefruit goodness, within each cell. 
+</p>
+
+<p>
+As we get smaller and smaller, we are approaching an infinite number of component parts of a grapefruit to be eaten. If we were to pick up each of the increasingly smaller parts of a grapefruit and eat them, this is an O(n) problem. As the number of pieces grows bigger, the amount of time it takes to eat them all grows proportionally.
+</p>
+
+{% highlight ruby %}
+class Human
+  def eat_grapefruit(grapefruit)
+    grapefruit.each do |molecule| 
+      slurp(molecule)
+    end
+  end
+end
+{% endhighlight %}
+
+<p>
+If we were not human, and instead, an elephant, we could eat the grapefruit in one bite. This would be a problem of complexity O(1), or constant time. It is always going to take the same amount of time to eat a single grapefruit: one gulp.
+</p>
+
+{% highlight ruby %}
+class Elephant
+  def eat_grapefruit(grapefruit)
+    gulp
+  end
+end
+{% endhighlight %}
+
+<p>
+Let’s get a bit grotesque now and pretend we are a grapefruit-eating bird feeding her chicks, with an infinite number of chicks and an infinite number of grapefruits. (Note: number has been used twice.) Each chick needs a regurgitated slurp of grapefruit, from each of the grapefruits. This would look like:
+</p>
+
+
+{% highlight ruby %}
+class Bird
+  def eat_grapefruit(grapefruits, chicks)
+    grapefruits.each do |grapefruit| 
+      chicks.each do |chick| 
+        chick.slurp(Bird::Stomach.regurgitate(grapefruit))
+      end
+    end
+  end
+end
+{% endhighlight %}
+
+<p>
+Given that the number of chicks is infinite (n) and the number of grapefruits is also infinite (n) -- if we combine the two, that is, every one time we eat a bit of grapefruit we have to feed a chick one time, this is now n * n, or n^2. Not a very efficient way to eat a grapefruit at all -- I’d rather be an elephant.
+</p>
+
+<p>
+These comestible examples demonstrate the concepts of O(1) -- constant, O(n) -- linear, and O(n^2) -- exponential. Sometimes complexity is unavoidable, but by working towards crafting algorithms that are less complex, we can ensure that our programs are more performant. 
+</p>
+
