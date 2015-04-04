@@ -55,6 +55,17 @@ code {
   color: black;
 }
 
+.post-title-title {
+  color: black;
+  font-size: 1.7rem;
+  margin: 0;
+}
+
+.post-excerpt {
+  color: black;
+  font-size: 1rem;
+}
+
 .posts {
   list-style-type: none;
 }

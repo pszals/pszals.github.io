@@ -4,18 +4,22 @@ title: Philip Szalwinski
 ---
 
 <div id="home">
-  <h1>Blog Posts</h1>
   <ul class="posts">
     {% for post in site.posts %}
     <li class="post-item">
-    <h2>
-      <a class="post-title" href="{{ post.url }}">
-    </h2>
+      <h2>
+        <a class="post-title" href="{{ post.url }}">
+      </h2>
+      <p class="post-title-title">
         {{ post.title }}
-      </a>
+      </p>
       <div class="post-date">
         {{ post.date | date_to_string }}
       </div>
+      <p class="post-excerpt">
+        {{ post.excerpt | truncatewords:30 }}
+      </p>
+      </a>
     </li>
     {% endfor %}
   </ul>
