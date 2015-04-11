@@ -1,3 +1,5 @@
 name: pszals programs
+description: Programming tips, tricks, and explanations
+url: http://pszals.github.io
 markdown: redcarpet
 highlighter: pygments
